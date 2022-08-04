@@ -1,8 +1,15 @@
 version: '1.0'
 services:
+  backend:
+    build: ./backend
+    container_name: learning-backend
+    ports:
+      - '4000:4000'
+    volumes:
+      - /mnt/d/projects/learning/backend:/app/backend
   frontend:
     build: ./frontend
-    container_name: learning
+    container_name: learning-frontend
     ports:
       - '3000:3000'
     stdin_open: true

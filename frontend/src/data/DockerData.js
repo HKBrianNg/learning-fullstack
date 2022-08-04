@@ -7,40 +7,82 @@ export const data =
         {
             "id": "1",
             "title": "Step 1",
-            "summary": "Install Docker Desktop on Windows",
-            "content": "https://docs.docker.com/desktop/install/windows-install/",
+            "summary": "Docker Crash Course #1 - What is Docker?",
+            "content": "https://www.youtube.com/watch?v=31ieHmcTUOk",
         },
-
         {
             "id": "2",
             "title": "Step 2",
-            "summary": "What is Docker Hub",
-            "content": "Docker Hub is the world's largest library and community for container images. It is a perfect home for your team's applications. Its three main features 1) Seamlessly Ship Any Application, Anywhere - Push images and make your app accessible to your team or with the Docker Community at large. 2) Collaborate And Build With Your Team - Create and manage users and grant access to your repositories. 3) Automate Your Development To Production Pipeline - Use automated builds and webhooks for easy integration into your development pipeline."
+            "summary": "Docker Crash Course #2 - Installing Docker",
+            "content": "https://www.youtube.com/watch?v=8Ev1aXl7TGY",
         },
         {
             "id": "3",
             "title": "Step 3",
-            "summary": "Register an account with Docker Hub",
-            "content": "https://hub.docker.com/",
+            "summary": "Docker Crash Course #3 - Images & Containers",
+            "content": "https://www.youtube.com/watch?v=hhfrFvuHRPU",
         },
         {
             "id": "4",
             "title": "Step 4",
-            "summary": "Sign in to Docker Desktop (use your Docker Hub account)",
-            "content": "We recommend that you authenticate using the Sign in/Create ID option in the top-right corner of Docker Desktop. Once logged in, you can access your Docker Hub repositories directly from Docker Desktop. Authenticated users get a higher pull rate limit compared to anonymous users. For example, if you are authenticated, you get 200 pulls per 6 hour period, compared to 100 pulls per 6 hour period per IP address for anonymous users. ",
+            "summary": "Docker Crash Course #4 - Parent Images & Docker Hub",
+            "content": "https://www.youtube.com/watch?v=ZVQmnziXEpA",
         },
         {
             "id": "5",
             "title": "Step 5",
-            "summary": "Get started",
-            "content": "https://docs.docker.com/desktop/get-started/",
+            "summary": "Docker Crash Course #5 - The Dockerfile",
+            "content": "https://www.youtube.com/watch?v=G07FcRhYB2c",
         },
         {
             "id": "6",
             "title": "Step 6",
-            "summary": "Pause or resume Docker Desktop",
-            "content": "You can pause your Docker Desktop session when you are not actively using it and save CPU resources on your machine. When you pause Docker Desktop, the Linux VM running Docker Engine is paused, the current state of all your containers are saved in memory, and all processes are frozen. This reduces the CPU usage and helps you retain a longer battery life on your laptop. You can resume Docker Desktop when you want by clicking the Resume option. From the Docker menu, select whale menu and then Pause to pause Docker Desktop. Docker Desktop displays the paused status on the Docker menu and on the Containers, Images, Volumes, and Dev Environment screens in Docker Dashboard. You can still access the Preferences (or Settings if you are a Windows user) and the Troubleshoot menu from the Dashboard when you’ve paused Docker Desktop. Select whale menu then Resume to resume Docker Desktop.",
+            "summary": "Docker Crash Course #6 - dockerignore",
+            "content": "https://www.youtube.com/watch?v=UHWCkDbN0yM",
         },
+        {
+            "id": "7",
+            "title": "Step 7",
+            "summary": "Docker Crash Course #7 - Starting & Stopping Containers",
+            "content": "https://www.youtube.com/watch?v=ZPEpreOpqao",
+        },
+        {
+            "id": "8",
+            "title": "Step 8",
+            "summary": "Docker Crash Course #8 - Layer Caching",
+            "content": "https://www.youtube.com/watch?v=_nMpndIyaBU",
+        },
+        {
+            "id": "9",
+            "title": "Step 9",
+            "summary": "Docker Crash Course #9 - Managing Images & Containers",
+            "content": "https://www.youtube.com/watch?v=4XsjXscp70o",
+        },
+        {
+            "id": "10",
+            "title": "Step 10",
+            "summary": "Docker Crash Course #10 - Volumes",
+            "content": "https://www.youtube.com/watch?v=Wh4BcFFr6Fc",
+        },
+        {
+            "id": "11",
+            "title": "Step 11",
+            "summary": "Docker Crash Course #11 - Docker Compose",
+            "content": "https://www.youtube.com/watch?v=TSySwrQcevM",
+        },
+        {
+            "id": "12",
+            "title": "Step 12",
+            "summary": "Docker Crash Course #12 - Dockerizing a React App",
+            "content": "https://www.youtube.com/watch?v=QePBbG5MoKk",
+        },
+        {
+            "id": "13",
+            "title": "Step 13",
+            "summary": "Docker Crash Course #13 - Sharing Images on Docker Hub",
+            "content": "https://www.youtube.com/watch?v=YS35VHsbS-0",
+        },
+
 
     ],
 }
