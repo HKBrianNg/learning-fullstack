@@ -2,10 +2,7 @@
 
 # dependencies
 /node_modules
-.ignoring
-Dockerfile
-.gitignore
-.dockerignore
+
 
 # production
 /build

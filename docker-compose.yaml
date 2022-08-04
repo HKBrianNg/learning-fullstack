@@ -6,13 +6,13 @@ services:
     ports:
       - '4000:4000'
     volumes:
-      - /mnt/d/projects/learning/backend:/app/backend
+      - /mnt/d/projects/learning/backend:/app/backend:ro
   frontend:
     build: ./frontend
     container_name: learning-frontend
     ports:
       - '3000:3000'
     volumes:
-      - /mnt/d/projects/learning/frontend/src:/app/frontend/src:ro
+      - /mnt/d/projects/learning/frontend:/app/frontend:ro
     stdin_open: true
     tty: true
