@@ -12,5 +12,7 @@ services:
     container_name: learning-frontend
     ports:
       - '3000:3000'
+    volumes:
+      - /mnt/d/projects/learning/frontend/src:/app/frontend/src:ro
     stdin_open: true
     tty: true
