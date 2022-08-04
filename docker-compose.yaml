@@ -1,0 +1,9 @@
+version: '1.0'
+services:
+  frontend:
+    build: ./frontend
+    container_name: learning
+    ports:
+      - '3000:3000'
+    stdin_open: true
+    tty: true
