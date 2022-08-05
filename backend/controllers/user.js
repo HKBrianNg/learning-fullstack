@@ -29,6 +29,11 @@ export const getusers = (req, res) => {
             id: 2,
             email: "lintingting@hotmail.com",
             name: "Diana Lin"
+        },
+        {
+            id: 3,
+            email: "ansonng@hotmail.com",
+            name: "Anson Ng"
         }
     ])
 }
