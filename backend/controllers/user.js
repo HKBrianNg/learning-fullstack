@@ -3,6 +3,7 @@ export const signin = async (req, res) => {
 
     const { email, password } = req.body;
     try {
+        console.log(email + password);
         return res.status(200).json({ message: "Singin success." });
     } catch (error) {
         res.status(500).json({ message: "Server error!" });

@@ -1,18 +1,29 @@
-version: '1.0'
+version: "3.9"
 services:
   backend:
     build: ./backend
+    image: "learning-backend:1.0.0"
     container_name: learning-backend
     ports:
       - '4000:4000'
     volumes:
-      - /mnt/d/projects/learning/backend:/app/backend:ro
-  frontend:
-    build: ./frontend
-    container_name: learning-frontend
+      - /mnt/d/projects/learning/backend:/app:ro
+  mongodb:
+    image: mongo
+    container_name: mongodb
+    restart: always
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=password
     ports:
-      - '3000:3000'
-    volumes:
-      - /mnt/d/projects/learning/frontend:/app/frontend:ro
-    stdin_open: true
-    tty: true
+      - "27017:27017"
+  mongo-express:
+    image: mongo-express
+    container_name: mongo-express
+    restart: always
+    environment:
+      - ME_CONFIG_MONGODB_ADMINUSERNAME=admin
+      - ME_CONFIG_MONGODB_ADMINPASSWORD=password
+      - ME_CONFIG_MONGODB_SERVER=mongodb
+    ports:
+      - "8081:8081"
