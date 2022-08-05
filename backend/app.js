@@ -1,27 +1,25 @@
-const express = require('express')
-const cors = require('cors')
+import express from 'express';
+import cors from 'cors';
+import bodyParser from 'body-parser';
+
+import userRoutes from './routes/userRoutes.js';
+
 
 const app = express()
 
-app.use(cors())
+// set limit & corss origin access
+app.use(bodyParser.json({ limit: "30mb", extended: true }));
+app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
+app.use(cors());
 
+// define routes
+app.use('/user', userRoutes);
+
+// api root path
 app.get('/', (req, res) => {
-    res.json([
-        {
-            "id": "1",
-            "title": "Book Review: The Bear & The Nightingale"
-        },
-        {
-            "id": "2",
-            "title": "Game Review: Pokemon Brillian Diamond"
-        },
-        {
-            "id": "3",
-            "title": "Show Review: Alice in Borderland"
-        }
-    ])
-})
+    res.send("Welcome to Learning API.");
+});
 
 app.listen(4000, () => {
-    console.log('listening for requests on port 4000')
+    console.log('Listening requests on port 4000')
 })
