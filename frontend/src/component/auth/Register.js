@@ -5,7 +5,7 @@ function Register() {
     return (
         <>
             <Navbar />
-            <div>Register</div>
+            <div>Register homexxx</div>
         </>
     )
 }
