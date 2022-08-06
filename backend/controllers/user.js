@@ -1,21 +1,42 @@
+import bcrypt from 'bcryptjs';
+import jwt from 'jsonwebtoken';
+import User from '../models/user.js';
+import { sysMsg } from '../constant.js';
 
 export const signin = async (req, res) => {
 
     const { email, password } = req.body;
     try {
+
+        // find a user
         console.log(email + password);
-        return res.status(200).json({ message: "Singin success." });
+        const existingUser = await User.findOne({ email });
+        if (!existingUser) {
+            return res.status(404).json(sysMsg[2]);
+        }
+
+        // const isPasswordCorrect = await bcrypt.compare(password,existingUser.password);
+
+        // check password 
+        if (!password === existingUser.password) {
+            return res.status(400).json(sysMsg[3]);
+        }
+
+        const resultSet = { result: existingUser }
+        return res.status(200).json(resultSet);
+
     } catch (error) {
-        res.status(500).json({ message: "Server error!" });
+        console.log(error);
+        res.status(500).json(sysMsg[1]);
     }
 }
 
 export const signup = () => {
-    const { email, password } = req.body;
+    const { firstName, lastName, email, password, confirmPassword } = req.body;
     try {
-        return res.status(200).json({ message: "Singup success." });
+
     } catch (error) {
-        res.status(500).json({ message: "Server error!" });
+        res.status(500).json(sysMsg[1]);
     }
 }
 

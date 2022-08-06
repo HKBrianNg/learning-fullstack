@@ -1,9 +1,14 @@
 import express from 'express';
 import cors from 'cors';
 import bodyParser from 'body-parser';
+import dotenv from 'dotenv';
 
 import userRoutes from './routes/userRoutes.js';
+import { welcomeMsg } from './constant.js';
+import mongoose from 'mongoose';
 
+
+dotenv.config();
 
 const app = express()
 
@@ -17,9 +22,15 @@ app.use('/user', userRoutes);
 
 // api root path
 app.get('/', (req, res) => {
-    res.send("Welcome to Learning API.");
+    res.send(`${welcomeMsg.message} v${welcomeMsg.version}`);
 });
 
-app.listen(4000, () => {
-    console.log('Listening requests on port 4000')
-})
+mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true })
+    .then(() => {
+        app.listen(process.env.PORT, () => {
+            console.log('Listening requests on port ' + process.env.PORT);
+        })
+    })
+    .catch((error) => {
+        console.log(error);
+    })
