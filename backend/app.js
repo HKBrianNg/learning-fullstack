@@ -1,11 +1,12 @@
-import express from 'express';
-import cors from 'cors';
-import bodyParser from 'body-parser';
-import dotenv from 'dotenv';
+import express from 'express'
+import cors from 'cors'
+import bodyParser from 'body-parser'
+import dotenv from 'dotenv'
 
-import userRoutes from './routes/userRoutes.js';
-import { welcomeMsg } from './constant.js';
-import mongoose from 'mongoose';
+import user from './routes/user.js'
+import video from './routes/video.js'
+import { welcomeMsg } from './constant.js'
+import mongoose from 'mongoose'
 
 
 dotenv.config();
@@ -18,17 +19,18 @@ app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
 app.use(cors());
 
 // define routes
-app.use('/user', userRoutes);
+app.use('/user', user);
+app.use('/video', video);
 
 // api root path
 app.get('/', (req, res) => {
     res.send(`${welcomeMsg.message} v${welcomeMsg.version}`);
 });
 
-mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true })
+mongoose.connect(process.env.MONGO_URI)
     .then(() => {
         app.listen(process.env.PORT, () => {
-            console.log('Listening requests on port ' + process.env.PORT);
+            console.log('LearnApp is connected to DB and start listening requests on port ' + process.env.PORT);
         })
     })
     .catch((error) => {

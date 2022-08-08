@@ -1,6 +1,6 @@
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
-import User from '../models/user.js';
+import User from '../models/userModel.js';
 import { sysMsg } from '../constant.js';
 
 export const signin = async (req, res) => {
@@ -40,22 +40,11 @@ export const signup = () => {
     }
 }
 
-export const getusers = (req, res) => {
-    res.status(200).json([
-        {
-            id: 1,
-            email: "ngshunchiang@hotmail.com",
-            name: "Brian Ng"
-        },
-        {
-            id: 2,
-            email: "lintingting@hotmail.com",
-            name: "Diana Lin"
-        },
-        {
-            id: 3,
-            email: "ansonng@hotmail.com",
-            name: "Anson Ng"
-        }
-    ])
+export const getusers = async (req, res) => {
+    const users = await User.find({});
+    if (!users) {
+        return res.status(400).json(sysMsg[4])
+    }
+    res.status(200).json(users);
+
 }
