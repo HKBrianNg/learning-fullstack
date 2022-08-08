@@ -8,3 +8,13 @@ services:
       - '4000:4000'
     volumes:
       - /mnt/d/projects/learning/backend:/app:ro
+  frontend:
+    build: ./frontend
+    image: "learning-frontend:1.0.0"
+    container_name: frontend
+    ports:
+      - '3000:3000'
+    volumes:
+      - /mnt/d/projects/learning/frontend:/app/frontend:ro
+    stdin_open: true
+    tty: true

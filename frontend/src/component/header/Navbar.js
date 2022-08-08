@@ -69,8 +69,8 @@ function Navbar() {
                     </Box>
                     <Avatar onClick={handleUserClick} sx={{}} src={user} />
                     <Menu anchorEl={anchorElUser} open={openUser} onClose={handleUserClose} >
-                        <Link to='/auth/register' style={{ textDecoration: 'none' }}>
-                            <MenuItem onClick={handleUserClose} onClose={handleUserClose}>Register</MenuItem>
+                        <Link to='/auth/signup' style={{ textDecoration: 'none' }}>
+                            <MenuItem onClick={handleUserClose} onClose={handleUserClose}>Signup</MenuItem>
                         </Link>
                         <Link to='/auth/logout' style={{ textDecoration: 'none' }}>
                             <MenuItem onClick={handleUserClose} onClose={handleUserClose}>Logout</MenuItem>
