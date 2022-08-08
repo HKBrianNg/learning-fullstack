@@ -1,15 +1,15 @@
 import express from 'express';
-import { signup, signin, getusers } from '../controllers/userController.js';
+import { signupUser, loginUser, getUsers } from '../controllers/userController.js';
 
 const router = express.Router();
 
-// http://localhost:5000/user/signup
-router.post('/signup', signup);
+// Singup user
+router.post('/signup', signupUser);
 
-// http://locathost:5000/user/signin
-router.post('/signin', signin);
+// Login user
+router.post('/login', loginUser);
 
-// http://locathost:5000/user
-router.get('/', getusers);
+//Get all users
+router.get('/', getUsers);
 
 export default router;

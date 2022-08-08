@@ -10,24 +10,13 @@ export const sysMsg = [
     "002-User does not exist.",
     "003-Password is not correct.",
     "004-No user is found.",
-    "005-No video is found."
+    "005-No video is found.",
+    "006-Email is already in use."
 ]
 
 export const httpMsg = [
-    {
-        "id": 0,
-        "message": "blank message."
-    },
-    {
-        "id": 1,
-        "message": "400-Bad Request."
-    },
-    {
-        "id": 2,
-        "message": "404-Not found."
-    },
-    {
-        "id": 3,
-        "message": "500-Internal Server Error."
-    }
+    "blank message.",
+    "400-Bad Request.",
+    "404-Not found.",
+    "500-Internal Server Error."
 ];
