@@ -11,7 +11,11 @@ export const sysMsg = [
     "003-Password is not correct.",
     "004-No user is found.",
     "005-No video is found.",
-    "006-Email is already in use."
+    "006-Email is already in use.",
+    "007-Name, email and password must be filled.",
+    "008-Email is not valid.",
+    "009-Password is not strong enough.",
+    "010-Incorrect email."
 ]
 
 export const httpMsg = [
