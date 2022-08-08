@@ -15,6 +15,6 @@ services:
     ports:
       - '3000:3000'
     volumes:
-      - /mnt/d/projects/learning/frontend:/app/frontend:ro
-    stdin_open: true
-    tty: true
+      - /mnt/d/projects/learning/frontend/src:/app/src:ro
+    # stdin_open: true
+    # tty: true

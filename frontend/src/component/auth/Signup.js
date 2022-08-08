@@ -5,7 +5,12 @@ function Signup() {
     return (
         <>
             <Navbar />
-            <div>Signup page</div>
+            <div>
+                <h1>
+                    Signup page
+                </h1>
+
+            </div>
         </>
     )
 }
