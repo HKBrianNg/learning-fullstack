@@ -1,5 +1,5 @@
 import { useState, useContext } from 'react'
-import { AppBar, Container, Box, Toolbar, Typography, Button, Menu, MenuItem, Avatar } from '@mui/material'
+import { AppBar, Container, Box, Toolbar, Typography, Menu, MenuItem, Avatar, Select } from '@mui/material'
 import MenuIcon from '@mui/icons-material/Menu'
 import LocalLibraryIcon from '@mui/icons-material/LocalLibrary'
 import SearchVideo from './SearchVideo.js'
@@ -26,7 +26,7 @@ function Navbar() {
 
     // const [user, setUser] = useState(null)
 
-    const handleClick = (event) => {
+    const handleSetupMenuClick = (event) => {
         setAnchorEl(event.currentTarget)
     }
 
@@ -34,14 +34,40 @@ function Navbar() {
         setAnchorElUser(event.currentTarget)
     }
 
-    const handleClose = () => {
+    const handleSetupMenuClose = () => {
         setAnchorEl(null)
-        setAnchorElUser(null)
     }
 
     const handleUserClose = () => {
         setAnchorElUser(null)
     }
+
+    const SetupMenu = () => {
+        return (
+            <>
+                <MenuIcon onClick={handleSetupMenuClick} />
+                <Menu anchorEl={anchorEl} open={open} onClose={handleSetupMenuClose}
+                    anchorOrigin={{
+                        vertical: 'center',
+                        horizontal: 'right',
+                    }}
+                    keepMounted
+                    transformOrigin={{
+                        vertical: 'top',
+                        horizontal: 'right',
+                    }}
+                >
+                    <Link to='/setup/video' style={{ textDecoration: 'none' }}>
+                        <MenuItem onClick={handleSetupMenuClose} onClose={handleSetupMenuClose}>Setup Video</MenuItem>
+                    </Link>
+                    <Link to='/setup/tab' style={{ textDecoration: 'none' }}>
+                        <MenuItem onClick={handleSetupMenuClose} onClose={handleSetupMenuClose}>Setup Tab</MenuItem>
+                    </Link>
+                </Menu>
+            </>
+        )
+    }
+
 
     return (
         <AppBar position="sticky">
@@ -51,17 +77,10 @@ function Navbar() {
                         <DisplayLogo />
                     </Box>
                     <Box sx={{ flexGrow: 1, ml: 8, display: { xs: 'none', md: 'flex' }, }}>
-                        <Link to='/setup' style={{ textDecoration: 'none' }}>
-                            <Button sx={{ color: 'white' }}>Setup</Button>
-                        </Link>
+                        <SetupMenu />
                     </Box>
                     <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' }, }}>
-                        <MenuIcon onClick={handleClick} />
-                        <Menu anchorEl={anchorEl} open={open} onClose={handleClose} >
-                            <Link to='/setup' style={{ textDecoration: 'none' }}>
-                                <MenuItem onClick={handleClose} onClose={handleClose}>Setup</MenuItem>
-                            </Link>
-                        </Menu>
+                        <SetupMenu />
                     </Box>
                     <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' }, }}>
                         <DisplayLogo />

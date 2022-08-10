@@ -7,7 +7,8 @@ import Logout from './page/auth/Logout'
 import VideoDetails from './component/video/VideoDetails'
 // import { ThemeProvider, createTheme } from '@mui/material/styles';
 import Home from './page/home/Home'
-import Setup from './page/setup/Setup'
+import SetupVideo from './page/setup/SetupVideo'
+import SetupTab from './page/setup/SetupTab'
 
 
 export const AppContext = createContext(null)
@@ -34,7 +35,8 @@ function App() {
           <Route path="/auth/login" element={<Login />} />
           <Route path="/auth/signup" element={<Signup />} />
           <Route path="/auth/logout" element={<Logout />} />
-          <Route path="/setup" element={<Setup />} />
+          <Route path="/setup/video" element={<SetupVideo />} />
+          <Route path="/setup/tab" element={<SetupTab />} />
         </Routes>
       </AppContext.Provider>
     </div>
