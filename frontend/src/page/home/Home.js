@@ -6,19 +6,20 @@ import { Typography, Container } from '@mui/material'
 import Box from '@mui/material/Box'
 import Navbar from '../../component/header/Navbar'
 import TabTemplate from './TabTemplate'
-import { data as AppServiceData } from '../../data/AppServiceData'
-import { data as DevOpsData } from '../../data/DevOpsData'
-import { data as CICDData } from '../../data/CICDData'
-import { data as IDEData } from '../../data/IDEData'
-import { data as GitHubData } from '../../data/GitHubData'
-import { data as DockerData } from '../../data/DockerData'
-import { data as ReactData } from '../../data/ReactData'
-import { data as MERNData } from '../../data/MERNData'
-import { data as MicroservicesData } from '../../data/MicroservicesData'
+import { data as AppService } from '../../data/AppServiceData'
+import { data as DevOps } from '../../data/DevOpsData'
+import { data as CICD } from '../../data/CICDData'
+import { data as IDE } from '../../data/IDEData'
+import { data as GitHub } from '../../data/GitHubData'
+import { data as Docker } from '../../data/DockerData'
+import { data as React } from '../../data/ReactData'
+import { data as MERN } from '../../data/MERNData'
+import { data as Microservices } from '../../data/MicroservicesData'
 import VideoInfo from '../../component/video/VideoInfo'
 
+
 const filterData = [
-    { category: 'IT', subCategory: 'Application Service' },
+    { category: 'IT', subCategory: 'AppService' },
     { category: 'IT', subCategory: 'DevOps' },
     { category: 'IT', subCategory: 'CICD' },
     { category: 'IT', subCategory: 'IDE' },
@@ -93,31 +94,31 @@ function Home() {
 
 
                     <TabPanel value={value} index={0}>
-                        <TabTemplate data={AppServiceData} />
+                        <TabTemplate data={AppService} />
                     </TabPanel>
                     <TabPanel value={value} index={1}>
-                        <TabTemplate data={DevOpsData} />
+                        <TabTemplate data={DevOps} />
                     </TabPanel>
                     <TabPanel value={value} index={2}>
-                        <TabTemplate data={CICDData} />
+                        <TabTemplate data={CICD} />
                     </TabPanel>
                     <TabPanel value={value} index={3}>
-                        <TabTemplate data={IDEData} />
+                        <TabTemplate data={IDE} />
                     </TabPanel>
                     <TabPanel value={value} index={4}>
-                        <TabTemplate data={GitHubData} />
+                        <TabTemplate data={GitHub} />
                     </TabPanel>
                     <TabPanel value={value} index={5}>
-                        <TabTemplate data={DockerData} />
+                        <TabTemplate data={Docker} />
                     </TabPanel>
                     <TabPanel value={value} index={6}>
-                        <TabTemplate data={ReactData} />
+                        <TabTemplate data={React} />
                     </TabPanel>
                     <TabPanel value={value} index={7}>
-                        <TabTemplate data={MERNData} />
+                        <TabTemplate data={MERN} />
                     </TabPanel>
                     <TabPanel value={value} index={8}>
-                        <TabTemplate data={MicroservicesData} />
+                        <TabTemplate data={Microservices} />
                     </TabPanel>
                 </Box>
                 <Box sx={{ flexGrow: 1, padding: 1, display: { xs: 'none', md: 'flex' }, flexWrap: 'wrap' }}>

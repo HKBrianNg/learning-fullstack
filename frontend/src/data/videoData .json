@@ -1,8 +1,8 @@
-export const videoData = [
+[
     {
         "id": "a1",
         "category": "IT",
-        "subCategory": 'Application Service',
+        "subCategory": "AppService",
         "source": "youtube#video",
         "videoId": "7BERknbDWVc",
         "publishedAt": "2018-11-14",
@@ -13,7 +13,7 @@ export const videoData = [
     {
         "id": "a2",
         "category": "IT",
-        "subCategory": 'Application Service',
+        "subCategory": "AppService",
         "source": "youtube#video",
         "videoId": "osz-MT3AxqA",
         "publishedAt": "2015-09-01",
@@ -24,7 +24,7 @@ export const videoData = [
     {
         "id": "b1",
         "category": "IT",
-        "subCategory": 'DevOps',
+        "subCategory": "DevOps",
         "source": "youtube#video",
         "videoId": "_Gpe1Zn-1fE",
         "publishedAt": "2019-08-16",
@@ -35,7 +35,7 @@ export const videoData = [
     {
         "id": "b2",
         "category": "IT",
-        "subCategory": 'DevOps',
+        "subCategory": "DevOps",
         "source": "youtube#video",
         "videoId": "0yWAtQ6wYNM",
         "publishedAt": "2022-01-18",
@@ -46,7 +46,7 @@ export const videoData = [
     {
         "id": "c1",
         "category": "IT",
-        "subCategory": 'CICD',
+        "subCategory": "CICD",
         "source": "youtube#video",
         "videoId": "OPwU3UWCxhw",
         "publishedAt": "2020-02-17",
@@ -57,7 +57,7 @@ export const videoData = [
     {
         "id": "d1",
         "category": "IT",
-        "subCategory": 'IDE',
+        "subCategory": "IDE",
         "source": "youtube#video",
         "videoId": "B-s71n0dHUk",
         "publishedAt": "2022-04-29",
@@ -68,7 +68,7 @@ export const videoData = [
     {
         "id": "d2",
         "category": "IT",
-        "subCategory": 'IDE',
+        "subCategory": "IDE",
         "source": "youtube#video",
         "videoId": "aydFCQiUW44",
         "publishedAt": "2020-04-29",
@@ -79,7 +79,7 @@ export const videoData = [
     {
         "id": "d3",
         "category": "IT",
-        "subCategory": 'IDE',
+        "subCategory": "IDE",
         "source": "youtube#video",
         "videoId": "bRW5r7TK6KM",
         "publishedAt": "2022-01-17",
@@ -90,7 +90,7 @@ export const videoData = [
     {
         "id": "d4",
         "category": "IT",
-        "subCategory": 'IDE',
+        "subCategory": "IDE",
         "source": "youtube#video",
         "videoId": "9jQthJ2uvLI",
         "publishedAt": "2020-03-31",
@@ -101,7 +101,7 @@ export const videoData = [
     {
         "id": "e1",
         "category": "IT",
-        "subCategory": 'GitHub',
+        "subCategory": "GitHub",
         "source": "youtube#video",
         "videoId": "8JJ101D3knE",
         "publishedAt": "2020-09-15",
@@ -112,7 +112,7 @@ export const videoData = [
     {
         "id": "e2",
         "category": "IT",
-        "subCategory": 'GitHub',
+        "subCategory": "GitHub",
         "source": "youtube#video",
         "videoId": "i_23KUAEtUM",
         "publishedAt": "2021-02-28",
@@ -123,7 +123,7 @@ export const videoData = [
     {
         "id": "e3",
         "category": "IT",
-        "subCategory": 'GitHub',
+        "subCategory": "GitHub",
         "source": "youtube#video",
         "videoId": "eLmpKKaQL54",
         "publishedAt": "2022-01-14",
@@ -134,7 +134,7 @@ export const videoData = [
     {
         "id": "f1",
         "category": "IT",
-        "subCategory": 'Docker',
+        "subCategory": "Docker",
         "source": "youtube#video",
         "videoId": "31ieHmcTUOk",
         "publishedAt": "2022-02-02",
@@ -145,7 +145,7 @@ export const videoData = [
     {
         "id": "f2",
         "category": "IT",
-        "subCategory": 'Docker',
+        "subCategory": "Docker",
         "source": "youtube#video",
         "videoId": "8Ev1aXl7TGY",
         "publishedAt": "2022-02-02",
@@ -156,7 +156,7 @@ export const videoData = [
     {
         "id": "f3",
         "category": "IT",
-        "subCategory": 'Docker',
+        "subCategory": "Docker",
         "source": "youtube#video",
         "videoId": "hhfrFvuHRPU",
         "publishedAt": "2022-02-03",
@@ -167,7 +167,7 @@ export const videoData = [
     {
         "id": "f4",
         "category": "IT",
-        "subCategory": 'Docker',
+        "subCategory": "Docker",
         "source": "youtube#video",
         "videoId": "ZVQmnziXEpA",
         "publishedAt": "2022-02-04",
@@ -178,7 +178,7 @@ export const videoData = [
     {
         "id": "f5",
         "category": "IT",
-        "subCategory": 'Docker',
+        "subCategory": "Docker",
         "source": "youtube#video",
         "videoId": "G07FcRhYB2c",
         "publishedAt": "2022-02-08",
@@ -189,7 +189,7 @@ export const videoData = [
     {
         "id": "f6",
         "category": "IT",
-        "subCategory": 'Docker',
+        "subCategory": "Docker",
         "source": "youtube#video",
         "videoId": "UHWCkDbN0yM",
         "publishedAt": "2022-02-09",
@@ -200,7 +200,7 @@ export const videoData = [
     {
         "id": "f7",
         "category": "IT",
-        "subCategory": 'Docker',
+        "subCategory": "Docker",
         "source": "youtube#video",
         "videoId": "ZPEpreOpqao",
         "publishedAt": "2022-02-09",
@@ -211,7 +211,7 @@ export const videoData = [
     {
         "id": "f8",
         "category": "IT",
-        "subCategory": 'Docker',
+        "subCategory": "Docker",
         "source": "youtube#video",
         "videoId": "_nMpndIyaBU",
         "publishedAt": "2022-02-11",
@@ -222,7 +222,7 @@ export const videoData = [
     {
         "id": "f9",
         "category": "IT",
-        "subCategory": 'Docker',
+        "subCategory": "Docker",
         "source": "youtube#video",
         "videoId": "4XsjXscp70o",
         "publishedAt": "2022-02-14",
@@ -233,7 +233,7 @@ export const videoData = [
     {
         "id": "f10",
         "category": "IT",
-        "subCategory": 'Docker',
+        "subCategory": "Docker",
         "source": "youtube#video",
         "videoId": "Wh4BcFFr6Fc",
         "publishedAt": "2022-02-16",
@@ -244,7 +244,7 @@ export const videoData = [
     {
         "id": "f11",
         "category": "IT",
-        "subCategory": 'Docker',
+        "subCategory": "Docker",
         "source": "youtube#video",
         "videoId": "TSySwrQcevM",
         "publishedAt": "2022-02-17",
@@ -255,7 +255,7 @@ export const videoData = [
     {
         "id": "f12",
         "category": "IT",
-        "subCategory": 'Docker',
+        "subCategory": "Docker",
         "source": "youtube#video",
         "videoId": "QePBbG5MoKk",
         "publishedAt": "2022-02-18",
@@ -266,7 +266,7 @@ export const videoData = [
     {
         "id": "f13",
         "category": "IT",
-        "subCategory": 'Docker',
+        "subCategory": "Docker",
         "source": "youtube#video",
         "videoId": "YS35VHsbS-0",
         "publishedAt": "2022-02-18",
@@ -277,7 +277,7 @@ export const videoData = [
     {
         "id": "g1",
         "category": "IT",
-        "subCategory": 'React',
+        "subCategory": "React",
         "source": "youtube#video",
         "videoId": "hhfrFvuHRPU",
         "publishedAt": "2020-12-21",
@@ -288,7 +288,7 @@ export const videoData = [
     {
         "id": "g2",
         "category": "IT",
-        "subCategory": 'React',
+        "subCategory": "React",
         "source": "youtube#video",
         "videoId": "kVeOpcw4GWY",
         "publishedAt": "2020-12-21",
@@ -299,7 +299,7 @@ export const videoData = [
     {
         "id": "g3",
         "category": "IT",
-        "subCategory": 'React',
+        "subCategory": "React",
         "source": "youtube#video",
         "videoId": "9D1x7-2FmTA",
         "publishedAt": "2020-12-22",
@@ -310,7 +310,7 @@ export const videoData = [
     {
         "id": "g4",
         "category": "IT",
-        "subCategory": 'React',
+        "subCategory": "React",
         "source": "youtube#video",
         "videoId": "pnhO8UaCgxg",
         "publishedAt": "2020-12-22",
@@ -321,7 +321,7 @@ export const videoData = [
     {
         "id": "g5",
         "category": "IT",
-        "subCategory": 'React',
+        "subCategory": "React",
         "source": "youtube#video",
         "videoId": "0sSYmRImgRY",
         "publishedAt": "2020-12-23",
@@ -332,7 +332,7 @@ export const videoData = [
     {
         "id": "g6",
         "category": "IT",
-        "subCategory": 'React',
+        "subCategory": "React",
         "source": "youtube#video",
         "videoId": "NbTrGcz4DW8",
         "publishedAt": "2020-12-29",
@@ -343,7 +343,7 @@ export const videoData = [
     {
         "id": "g7",
         "category": "IT",
-        "subCategory": 'React',
+        "subCategory": "React",
         "source": "youtube#video",
         "videoId": "0XSDAup85SA",
         "publishedAt": "2020-12-29",
@@ -354,7 +354,7 @@ export const videoData = [
     {
         "id": "g8",
         "category": "IT",
-        "subCategory": 'React',
+        "subCategory": "React",
         "source": "youtube#video",
         "videoId": "4pO-HcG2igk",
         "publishedAt": "2020-12-30",
@@ -365,7 +365,7 @@ export const videoData = [
     {
         "id": "g9",
         "category": "IT",
-        "subCategory": 'React',
+        "subCategory": "React",
         "source": "youtube#video",
         "videoId": "rb1GWqCJid4",
         "publishedAt": "2020-12-31",
@@ -376,7 +376,7 @@ export const videoData = [
     {
         "id": "g10",
         "category": "IT",
-        "subCategory": 'React',
+        "subCategory": "React",
         "source": "youtube#video",
         "videoId": "tHjxSVaj_wY",
         "publishedAt": "2020-12-31",
@@ -387,7 +387,7 @@ export const videoData = [
     {
         "id": "g11",
         "category": "IT",
-        "subCategory": 'React',
+        "subCategory": "React",
         "source": "youtube#video",
         "videoId": "PHaECbrKgs0",
         "publishedAt": "2021-01-04",
@@ -398,7 +398,7 @@ export const videoData = [
     {
         "id": "g12",
         "category": "IT",
-        "subCategory": 'React',
+        "subCategory": "React",
         "source": "youtube#video",
         "videoId": "-YpnB-zlkPU",
         "publishedAt": "2021-01-04",
@@ -409,7 +409,7 @@ export const videoData = [
     {
         "id": "g13",
         "category": "IT",
-        "subCategory": 'React',
+        "subCategory": "React",
         "source": "youtube#video",
         "videoId": "CWEOYFzgOJs",
         "publishedAt": "2021-01-06",
@@ -420,7 +420,7 @@ export const videoData = [
     {
         "id": "g14",
         "category": "IT",
-        "subCategory": 'React',
+        "subCategory": "React",
         "source": "youtube#video",
         "videoId": "gv9ugDJ1ynU",
         "publishedAt": "2021-01-06",
@@ -431,7 +431,7 @@ export const videoData = [
     {
         "id": "g15",
         "category": "IT",
-        "subCategory": 'React',
+        "subCategory": "React",
         "source": "youtube#video",
         "videoId": "jQc_bTFZ5_I",
         "publishedAt": "2021-01-07",
@@ -442,7 +442,7 @@ export const videoData = [
     {
         "id": "g16",
         "category": "IT",
-        "subCategory": 'React',
+        "subCategory": "React",
         "source": "youtube#video",
         "videoId": "eao7ABGFUXs",
         "publishedAt": "2021-01-08",
@@ -453,7 +453,7 @@ export const videoData = [
     {
         "id": "g17",
         "category": "IT",
-        "subCategory": 'React',
+        "subCategory": "React",
         "source": "youtube#video",
         "videoId": "qdCHEUaFhBk",
         "publishedAt": "2020-01-08",
@@ -464,7 +464,7 @@ export const videoData = [
     {
         "id": "g18",
         "category": "IT",
-        "subCategory": 'React',
+        "subCategory": "React",
         "source": "youtube#video",
         "videoId": "qtheqr0jgIQ",
         "publishedAt": "2021-01-11",
@@ -475,7 +475,7 @@ export const videoData = [
     {
         "id": "g19",
         "category": "IT",
-        "subCategory": 'React',
+        "subCategory": "React",
         "source": "youtube#video",
         "videoId": "DTBta08fXGU",
         "publishedAt": "2021-01-11",
@@ -486,7 +486,7 @@ export const videoData = [
     {
         "id": "g20",
         "category": "IT",
-        "subCategory": 'React',
+        "subCategory": "React",
         "source": "youtube#video",
         "videoId": "Jl4q2cccwf0",
         "publishedAt": "2021-01-12",
@@ -497,7 +497,7 @@ export const videoData = [
     {
         "id": "g21",
         "category": "IT",
-        "subCategory": 'React',
+        "subCategory": "React",
         "source": "youtube#video",
         "videoId": "aZGzwEjZrXc",
         "publishedAt": "2021-01-14",
@@ -508,7 +508,7 @@ export const videoData = [
     {
         "id": "g22",
         "category": "IT",
-        "subCategory": 'React',
+        "subCategory": "React",
         "source": "youtube#video",
         "videoId": "EmUa_tcSM-k",
         "publishedAt": "2021-01-14",
@@ -519,7 +519,7 @@ export const videoData = [
     {
         "id": "g23",
         "category": "IT",
-        "subCategory": 'React',
+        "subCategory": "React",
         "source": "youtube#video",
         "videoId": "DO-pSysGItQ",
         "publishedAt": "2021-01-15",
@@ -530,7 +530,7 @@ export const videoData = [
     {
         "id": "g24",
         "category": "IT",
-        "subCategory": 'React',
+        "subCategory": "React",
         "source": "youtube#video",
         "videoId": "aKOQtGLT-Yk",
         "publishedAt": "2021-01-15",
@@ -541,7 +541,7 @@ export const videoData = [
     {
         "id": "g25",
         "category": "IT",
-        "subCategory": 'React',
+        "subCategory": "React",
         "source": "youtube#video",
         "videoId": "t7VmF4WsLCo",
         "publishedAt": "2021-01-18",
@@ -552,7 +552,7 @@ export const videoData = [
     {
         "id": "g26",
         "category": "IT",
-        "subCategory": 'React',
+        "subCategory": "React",
         "source": "youtube#video",
         "videoId": "c-5VXl8yPQA",
         "publishedAt": "2021-01-18",
@@ -563,7 +563,7 @@ export const videoData = [
     {
         "id": "g27",
         "category": "IT",
-        "subCategory": 'React',
+        "subCategory": "React",
         "source": "youtube#video",
         "videoId": "IkMND33x0qQ",
         "publishedAt": "2021-01-19",
@@ -574,7 +574,7 @@ export const videoData = [
     {
         "id": "g28",
         "category": "IT",
-        "subCategory": 'React',
+        "subCategory": "React",
         "source": "youtube#video",
         "videoId": "pJiRj02PkJQ",
         "publishedAt": "2021-01-20",
@@ -585,7 +585,7 @@ export const videoData = [
     {
         "id": "g29",
         "category": "IT",
-        "subCategory": 'React',
+        "subCategory": "React",
         "source": "youtube#video",
         "videoId": "EcRFYF4B3IQ",
         "publishedAt": "2021-01-20",
@@ -596,7 +596,7 @@ export const videoData = [
     {
         "id": "g30",
         "category": "IT",
-        "subCategory": 'React',
+        "subCategory": "React",
         "source": "youtube#video",
         "videoId": "TmVqwhBUiSM",
         "publishedAt": "2021-01-21",
@@ -607,7 +607,7 @@ export const videoData = [
     {
         "id": "g31",
         "category": "IT",
-        "subCategory": 'React',
+        "subCategory": "React",
         "source": "youtube#video",
         "videoId": "Wb-0CkLiyQk",
         "publishedAt": "2021-01-22",
@@ -618,7 +618,7 @@ export const videoData = [
     {
         "id": "g32",
         "category": "IT",
-        "subCategory": 'React',
+        "subCategory": "React",
         "source": "youtube#video",
         "videoId": "XW0t2lk4Ffo",
         "publishedAt": "2021-01-22",
@@ -629,7 +629,7 @@ export const videoData = [
     {
         "id": "h1",
         "category": "IT",
-        "subCategory": 'MERN',
+        "subCategory": "MERN",
         "source": "youtube#video",
         "videoId": "98BzS5Oz5E4",
         "publishedAt": "2022-06-15",
@@ -640,7 +640,7 @@ export const videoData = [
     {
         "id": "h2",
         "category": "IT",
-        "subCategory": 'MERN',
+        "subCategory": "MERN",
         "source": "youtube#video",
         "videoId": "8DploTqLstE",
         "publishedAt": "2022-06-15",
@@ -651,7 +651,7 @@ export const videoData = [
     {
         "id": "h3",
         "category": "IT",
-        "subCategory": 'MERN',
+        "subCategory": "MERN",
         "source": "youtube#video",
         "videoId": "Ll6knx7sFis",
         "publishedAt": "2022-06-16",
@@ -662,7 +662,7 @@ export const videoData = [
     {
         "id": "h4",
         "category": "IT",
-        "subCategory": 'MERN',
+        "subCategory": "MERN",
         "source": "youtube#video",
         "videoId": "s0anSjEeua8",
         "publishedAt": "2022-06-17",
@@ -673,7 +673,7 @@ export const videoData = [
     {
         "id": "h5",
         "category": "IT",
-        "subCategory": 'MERN',
+        "subCategory": "MERN",
         "source": "youtube#video",
         "videoId": "O8IipcpTmYU",
         "publishedAt": "2022-06-20",
@@ -684,7 +684,7 @@ export const videoData = [
     {
         "id": "h6",
         "category": "IT",
-        "subCategory": 'MERN',
+        "subCategory": "MERN",
         "source": "youtube#video",
         "videoId": "oEHHjs1UVXQ",
         "publishedAt": "2022-06-21",
@@ -695,7 +695,7 @@ export const videoData = [
     {
         "id": "h7",
         "category": "IT",
-        "subCategory": 'MERN',
+        "subCategory": "MERN",
         "source": "youtube#video",
         "videoId": "MwiyQsWSlc0",
         "publishedAt": "2022-06-22",
@@ -706,7 +706,7 @@ export const videoData = [
     {
         "id": "h8",
         "category": "IT",
-        "subCategory": 'MERN',
+        "subCategory": "MERN",
         "source": "youtube#video",
         "videoId": "bx4nk7kBS10",
         "publishedAt": "2022-06-23",
@@ -717,7 +717,7 @@ export const videoData = [
     {
         "id": "i1",
         "category": "IT",
-        "subCategory": 'Microservices',
+        "subCategory": "Microservices",
         "source": "youtube#video",
         "videoId": "1xo-0gCVhTU",
         "publishedAt": "2017-11-08",
@@ -725,4 +725,4 @@ export const videoData = [
         "description": "Learn the basics of Microservices, Docker, and Kubernetes.",
         "thumbnailUrl": "https://i.ytimg.com/vi/1xo-0gCVhTU/maxresdefault.jpg",
     },
-];
+]
