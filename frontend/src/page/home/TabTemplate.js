@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
 import { Container, Box, Stack, Paper, Typography, Accordion, AccordionSummary, AccordionDetails, Link } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import VideoInfo from '../../component/video/VideoInfo';
 import { grey } from '@mui/material/colors';
 
 
-function TabTemplate({ data, filter }) {
+function TabTemplate({ data }) {
     const [expanded, setExpanded] = useState(false);
 
     const handleChange = (panel) => (event, isExpanded) => {
@@ -30,7 +29,7 @@ function TabTemplate({ data, filter }) {
                             </Typography>
                         </Paper>
                     </Box>
-                    <Box sx={{ flex: 2, padding: 1 }}>
+                    <Box sx={{ flex: 1, padding: 1 }}>
                         {data.items.map((item) => (
                             <Accordion key={item.id} expanded={expanded === item.id} onChange={handleChange(item.id)}>
                                 <AccordionSummary
@@ -49,9 +48,6 @@ function TabTemplate({ data, filter }) {
                                 </AccordionDetails>
                             </Accordion>
                         ))}
-                    </Box>
-                    <Box sx={{ flex: 1, padding: 1, height: 700, overflow: "hidden", overflowY: "scroll" }}>
-                        <VideoInfo filter={filter} />
                     </Box>
                 </Stack>
             </Container>
