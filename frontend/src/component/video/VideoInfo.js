@@ -1,7 +1,5 @@
-import { Card, CardHeader, CardMedia, CardContent, CardActions, Avatar, IconButton, Typography } from '@mui/material';
+import { Card, CardHeader, CardMedia, CardContent, Avatar, IconButton, Typography } from '@mui/material';
 import { deepOrange } from '@mui/material/colors';
-import FavoriteIcon from '@mui/icons-material/Favorite';
-import ShareIcon from '@mui/icons-material/Share';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import { videoData } from '../../data/videoData';
 import { useNavigate } from 'react-router-dom';
@@ -23,7 +21,7 @@ function VideoInfo({ filter }) {
         <>
             {data.map((item) => (
 
-                <Card key={item.videoId} sx={{ maxWidth: 250, padding: 2 }}>
+                <Card key={item.id} sx={{ maxWidth: 250, padding: 2 }}>
                     <CardMedia
                         component="img"
                         // height="200"

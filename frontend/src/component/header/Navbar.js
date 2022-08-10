@@ -72,9 +72,14 @@ function Navbar() {
                         <Link to='/auth/signup' style={{ textDecoration: 'none' }}>
                             <MenuItem onClick={handleUserClose} onClose={handleUserClose}>Signup</MenuItem>
                         </Link>
-                        <Link to='/auth/logout' style={{ textDecoration: 'none' }}>
-                            <MenuItem onClick={handleUserClose} onClose={handleUserClose}>Logout</MenuItem>
-                        </Link>
+                        {user ?
+                            (<Link to='/auth/logout' style={{ textDecoration: 'none' }}>
+                                <MenuItem onClick={handleUserClose} onClose={handleUserClose}>Logout</MenuItem>
+                            </Link>) :
+                            (<Link to='/auth/login' style={{ textDecoration: 'none' }}>
+                                <MenuItem onClick={handleUserClose} onClose={handleUserClose}>Login</MenuItem>
+                            </Link>)
+                        }
                     </Menu>
                 </Toolbar>
                 <Toolbar sx={{ display: { xs: 'flex', md: 'none' }, padding: 0, }}>
