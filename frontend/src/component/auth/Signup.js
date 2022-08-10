@@ -1,34 +1,26 @@
 import { useState } from 'react'
 import Navbar from '../header/Navbar'
-import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
+import { signupAPI } from '../../api/user'
+
 
 function Signup() {
     const [user, setUser] = useState({ name: '', email: '', password: '' });
-    const [error, setError] = useState(null)
+    const [errmsg, setErrmsg] = useState(null)
     const [isLoading, setIsLoading] = useState(null)
     const navigate = useNavigate()
-
-    const signupAPI = async (user) => {
-        const url = 'http://localhost/4000'
-
-        try {
-            const response = await axios.post(`${url}/user/signup`, user)
-            console.log("signupAPI() success:", response)
-        } catch (error) {
-            setError(error)
-            console.log("signupAPI() error:", error)
-        }
-    }
 
     const handleSubmit = async (e) => {
         e.preventDefault()
         setIsLoading(true)
-        setError(null)
-        await signupAPI(user)
+        setErrmsg(null)
+        const { okStatus, data } = await signupAPI(user)
         setIsLoading(false)
-        if (!error) {
+        if (okStatus) {
+            localStorage.setItem('user', JSON.stringify(data))
             navigate('/home', { replace: true })
+        } else {
+            setErrmsg(data)
         }
     }
 
@@ -45,7 +37,7 @@ function Signup() {
                 <label>Password:</label>
                 <input type="password" onChange={(e) => setUser({ ...user, password: e.target.value })} value={user.password} />
                 <button disabled={isLoading}>Sign Up</button>
-                {error && <div className='error'>{error}</div>}
+                {errmsg && <div className='error'>{errmsg}</div>}
             </form>
         </>
     )

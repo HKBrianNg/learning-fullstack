@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
-import { AppBar, Container, Box, Toolbar, Typography, Button, Menu, MenuItem, Avatar } from '@mui/material';
-import MenuIcon from '@mui/icons-material/Menu';
-import LocalLibraryIcon from '@mui/icons-material/LocalLibrary';
-import SearchVideo from './SearchVideo.js';
-import { Link } from 'react-router-dom';
-
+import { useState, useContext } from 'react'
+import { AppBar, Container, Box, Toolbar, Typography, Button, Menu, MenuItem, Avatar } from '@mui/material'
+import MenuIcon from '@mui/icons-material/Menu'
+import LocalLibraryIcon from '@mui/icons-material/LocalLibrary'
+import SearchVideo from './SearchVideo.js'
+import { Link } from 'react-router-dom'
+import { AppContext } from '../../App'
+import { deepOrange } from '@mui/material/colors';
 
 const DisplayLogo = () => {
     return (
@@ -17,29 +18,30 @@ const DisplayLogo = () => {
 
 
 function Navbar() {
-    const [anchorEl, setAnchorEl] = useState(null);
-    const [anchorElUser, setAnchorElUser] = useState(null);
-    const open = Boolean(anchorEl);
-    const openUser = Boolean(anchorElUser);
+    const { app } = useContext(AppContext)
+    const [anchorEl, setAnchorEl] = useState(null)
+    const [anchorElUser, setAnchorElUser] = useState(null)
+    const open = Boolean(anchorEl)
+    const openUser = Boolean(anchorElUser)
 
-    const [user, setUser] = useState(null);
+    // const [user, setUser] = useState(null)
 
     const handleClick = (event) => {
-        setAnchorEl(event.currentTarget);
-    };
+        setAnchorEl(event.currentTarget)
+    }
 
     const handleUserClick = (event) => {
-        setAnchorElUser(event.currentTarget);
-    };
+        setAnchorElUser(event.currentTarget)
+    }
 
     const handleClose = () => {
-        setAnchorEl(null);
-        setAnchorElUser(null);
-    };
+        setAnchorEl(null)
+        setAnchorElUser(null)
+    }
 
     const handleUserClose = () => {
-        setAnchorElUser(null);
-    };
+        setAnchorElUser(null)
+    }
 
     return (
         <AppBar position="sticky">
@@ -67,18 +69,25 @@ function Navbar() {
                     <Box sx={{ flexGrow: 2, margin: 1, display: { xs: 'none', md: 'flex' } }}>
                         <SearchVideo />
                     </Box>
-                    <Avatar onClick={handleUserClick} sx={{}} src={user} />
+                    {app.email ?
+                        (<Avatar onClick={handleUserClick} sx={{ bgcolor: deepOrange[500] }}>{app.email.substring(0, 1)}</Avatar>) :
+                        (<Avatar onClick={handleUserClick} sx={{}} />)
+                    }
                     <Menu anchorEl={anchorElUser} open={openUser} onClose={handleUserClose} >
-                        <Link to='/auth/signup' style={{ textDecoration: 'none' }}>
-                            <MenuItem onClick={handleUserClose} onClose={handleUserClose}>Signup</MenuItem>
-                        </Link>
-                        {user ?
+                        {!app.email &&
+                            <Link to='/auth/signup' style={{ textDecoration: 'none' }}>
+                                <MenuItem onClick={handleUserClose} onClose={handleUserClose}>Signup</MenuItem>
+                            </Link>
+                        }
+                        {app.email ?
                             (<Link to='/auth/logout' style={{ textDecoration: 'none' }}>
                                 <MenuItem onClick={handleUserClose} onClose={handleUserClose}>Logout</MenuItem>
                             </Link>) :
-                            (<Link to='/auth/login' style={{ textDecoration: 'none' }}>
-                                <MenuItem onClick={handleUserClose} onClose={handleUserClose}>Login</MenuItem>
-                            </Link>)
+                            (
+                                <Link to='/auth/login' style={{ textDecoration: 'none' }}>
+                                    <MenuItem onClick={handleUserClose} onClose={handleUserClose}>Login</MenuItem>
+                                </Link>
+                            )
                         }
                     </Menu>
                 </Toolbar>
@@ -93,4 +102,4 @@ function Navbar() {
     );
 }
 
-export default Navbar;
+export default Navbar

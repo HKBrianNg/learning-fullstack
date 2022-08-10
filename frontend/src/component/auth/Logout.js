@@ -1,11 +1,12 @@
-import React from 'react';
-import Navbar from '../header/Navbar';
-
 function Logout() {
+    localStorage.clear()
+
     return (
         <>
-            <Navbar />
-            <div>Logout</div>
+            <div>
+                <h3>Thank you.</h3>
+                <a href='http://localhost:3000/'>Access our site</a>
+            </div>
         </>
     )
 }
