@@ -51,15 +51,15 @@ function Navbar() {
                         <DisplayLogo />
                     </Box>
                     <Box sx={{ flexGrow: 1, ml: 8, display: { xs: 'none', md: 'flex' }, }}>
-                        <Link to='/about' style={{ textDecoration: 'none' }}>
-                            <Button sx={{ color: 'white' }}>About</Button>
+                        <Link to='/setup' style={{ textDecoration: 'none' }}>
+                            <Button sx={{ color: 'white' }}>Setup</Button>
                         </Link>
                     </Box>
                     <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' }, }}>
                         <MenuIcon onClick={handleClick} />
                         <Menu anchorEl={anchorEl} open={open} onClose={handleClose} >
-                            <Link to='/about' style={{ textDecoration: 'none' }}>
-                                <MenuItem onClick={handleClose} onClose={handleClose}>About</MenuItem>
+                            <Link to='/setup' style={{ textDecoration: 'none' }}>
+                                <MenuItem onClick={handleClose} onClose={handleClose}>Setup</MenuItem>
                             </Link>
                         </Menu>
                     </Box>

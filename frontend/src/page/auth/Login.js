@@ -1,5 +1,5 @@
 import { useState, useContext } from 'react'
-import Navbar from '../header/Navbar'
+import Navbar from '../../component/header/Navbar'
 import { loginAPI } from '../../api/user'
 import { useNavigate } from 'react-router-dom'
 import { AppContext } from '../../App'

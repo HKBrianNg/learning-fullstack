@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { Container, Box, Stack, Paper, Typography, Accordion, AccordionSummary, AccordionDetails, Link } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import VideoInfo from '../video/VideoInfo';
+import VideoInfo from '../../component/video/VideoInfo';
 import { grey } from '@mui/material/colors';
 
 
-function AboutTemplate({ data, filter }) {
+function TabTemplate({ data, filter }) {
     const [expanded, setExpanded] = useState(false);
 
     const handleChange = (panel) => (event, isExpanded) => {
@@ -59,4 +59,4 @@ function AboutTemplate({ data, filter }) {
     )
 }
 
-export default AboutTemplate;
+export default TabTemplate;

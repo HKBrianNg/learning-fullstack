@@ -1,24 +1,24 @@
-import * as React from 'react';
-import PropTypes from 'prop-types';
-import Tabs from '@mui/material/Tabs';
-import Tab from '@mui/material/Tab';
-import Typography from '@mui/material/Typography';
-import Box from '@mui/material/Box';
-import Navbar from '../header/Navbar';
-import AboutTemplate from './AboutTemplate';
-import { data as AppServiceData } from '../../data/AppServiceData';
-import { data as DevOpsData } from '../../data/DevOpsData';
-import { data as CICDData } from '../../data/CICDData';
-import { data as IDEData } from '../../data/IDEData';
-import { data as GitHubData } from '../../data/GitHubData';
-import { data as DockerData } from '../../data/DockerData';
-import { data as ReactData } from '../../data/ReactData';
-import { data as MERNData } from '../../data/MERNData';
-import { data as MicroservicesData } from '../../data/MicroservicesData';
+import * as React from 'react'
+import PropTypes from 'prop-types'
+import Tabs from '@mui/material/Tabs'
+import Tab from '@mui/material/Tab'
+import Typography from '@mui/material/Typography'
+import Box from '@mui/material/Box'
+import Navbar from '../../component/header/Navbar'
+import TabTemplate from './TabTemplate'
+import { data as AppServiceData } from '../../data/AppServiceData'
+import { data as DevOpsData } from '../../data/DevOpsData'
+import { data as CICDData } from '../../data/CICDData'
+import { data as IDEData } from '../../data/IDEData'
+import { data as GitHubData } from '../../data/GitHubData'
+import { data as DockerData } from '../../data/DockerData'
+import { data as ReactData } from '../../data/ReactData'
+import { data as MERNData } from '../../data/MERNData'
+import { data as MicroservicesData } from '../../data/MicroservicesData'
 
 
 function TabPanel(props) {
-    const { children, value, index, ...other } = props;
+    const { children, value, index, ...other } = props
 
     return (
         <div
@@ -50,12 +50,12 @@ function a11yProps(index) {
     };
 }
 
-function About() {
-    const [value, setValue] = React.useState(0);
+function Home() {
+    const [value, setValue] = React.useState(0)
 
     const handleChange = (event, newValue) => {
-        setValue(newValue);
-    };
+        setValue(newValue)
+    }
 
     return (
         <>
@@ -76,35 +76,35 @@ function About() {
                     </Tabs>
                 </Box>
                 <TabPanel value={value} index={0}>
-                    <AboutTemplate data={AppServiceData} filter={{ category: 'IT', subCategory: 'Application Service' }} />
+                    <TabTemplate data={AppServiceData} filter={{ category: 'IT', subCategory: 'Application Service' }} />
                 </TabPanel>
                 <TabPanel value={value} index={1}>
-                    <AboutTemplate data={DevOpsData} filter={{ category: 'IT', subCategory: 'DevOps' }} />
+                    <TabTemplate data={DevOpsData} filter={{ category: 'IT', subCategory: 'DevOps' }} />
                 </TabPanel>
                 <TabPanel value={value} index={2}>
-                    <AboutTemplate data={CICDData} filter={{ category: 'IT', subCategory: 'CICD' }} />
+                    <TabTemplate data={CICDData} filter={{ category: 'IT', subCategory: 'CICD' }} />
                 </TabPanel>
                 <TabPanel value={value} index={3}>
-                    <AboutTemplate data={IDEData} filter={{ category: 'IT', subCategory: 'IDE' }} />
+                    <TabTemplate data={IDEData} filter={{ category: 'IT', subCategory: 'IDE' }} />
                 </TabPanel>
                 <TabPanel value={value} index={4}>
-                    <AboutTemplate data={GitHubData} filter={{ category: 'IT', subCategory: 'GitHub' }} />
+                    <TabTemplate data={GitHubData} filter={{ category: 'IT', subCategory: 'GitHub' }} />
                 </TabPanel>
                 <TabPanel value={value} index={5}>
-                    <AboutTemplate data={DockerData} filter={{ category: 'IT', subCategory: 'Docker' }} />
+                    <TabTemplate data={DockerData} filter={{ category: 'IT', subCategory: 'Docker' }} />
                 </TabPanel>
                 <TabPanel value={value} index={6}>
-                    <AboutTemplate data={ReactData} filter={{ category: 'IT', subCategory: 'React' }} />
+                    <TabTemplate data={ReactData} filter={{ category: 'IT', subCategory: 'React' }} />
                 </TabPanel>
                 <TabPanel value={value} index={7}>
-                    <AboutTemplate data={MERNData} filter={{ category: 'IT', subCategory: 'MERN' }} />
+                    <TabTemplate data={MERNData} filter={{ category: 'IT', subCategory: 'MERN' }} />
                 </TabPanel>
                 <TabPanel value={value} index={8}>
-                    <AboutTemplate data={MicroservicesData} filter={{ category: 'IT', subCategory: 'Microservices' }} />
+                    <TabTemplate data={MicroservicesData} filter={{ category: 'IT', subCategory: 'Microservices' }} />
                 </TabPanel>
             </Box>
         </>
     );
 }
 
-export default About;
+export default Home;

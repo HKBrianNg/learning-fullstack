@@ -1,12 +1,14 @@
 import { useState, createContext } from 'react'
 import { Routes, Route } from "react-router-dom"
-import Home from './component/home/Home'
-import Login from './component/auth/Login'
-import Signup from './component/auth/Signup'
-import Logout from './component/auth/Logout'
+// import Home from './component/home/Home'
+import Login from './page/auth/Login'
+import Signup from './page/auth/Signup'
+import Logout from './page/auth/Logout'
 import VideoDetails from './component/video/VideoDetails'
 // import { ThemeProvider, createTheme } from '@mui/material/styles';
-import About from './component/about/About'
+import Home from './page/home/Home'
+import Setup from './page/setup/Setup'
+
 
 export const AppContext = createContext(null)
 
@@ -32,7 +34,7 @@ function App() {
           <Route path="/auth/login" element={<Login />} />
           <Route path="/auth/signup" element={<Signup />} />
           <Route path="/auth/logout" element={<Logout />} />
-          <Route path="/about" element={<About />} />
+          <Route path="/setup" element={<Setup />} />
         </Routes>
       </AppContext.Provider>
     </div>

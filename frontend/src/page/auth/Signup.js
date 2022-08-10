@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import Navbar from '../header/Navbar'
+import Navbar from '../../component/header/Navbar'
 import { useNavigate } from 'react-router-dom'
 import { signupAPI } from '../../api/user'
 
