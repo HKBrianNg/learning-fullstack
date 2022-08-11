@@ -2,7 +2,7 @@ export const videoData = [
     {
         "id": "a1",
         "category": "IT",
-        "subCategory": 'Application Service',
+        "subCategory": 'AppService',
         "source": "youtube#video",
         "videoId": "7BERknbDWVc",
         "publishedAt": "2018-11-14",
@@ -13,7 +13,7 @@ export const videoData = [
     {
         "id": "a2",
         "category": "IT",
-        "subCategory": 'Application Service',
+        "subCategory": 'AppService',
         "source": "youtube#video",
         "videoId": "osz-MT3AxqA",
         "publishedAt": "2015-09-01",

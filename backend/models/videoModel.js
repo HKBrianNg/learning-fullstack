@@ -15,6 +15,10 @@ const videoSchema = new Schema({
         type: String,
         required: true
     },
+    videoUrl: {
+        type: String,
+        required: true
+    },
     videoId: {
         type: String,
         required: true
