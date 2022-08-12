@@ -2,7 +2,11 @@ import { useState } from 'react'
 import Navbar from '../../component/header/Navbar'
 import { Typography, Container, Box, TextField, Stack, Paper, Button, FormControl, InputLabel, Select, MenuItem } from '@mui/material'
 import CircularProgress from '@mui/material/CircularProgress'
+import { createVideoAPI } from '../../api/video'
 
+const sysMsg = [
+    "Please decode video Id first.",
+]
 
 function SetupVideo() {
     const [video, setVideo] = useState({
@@ -23,19 +27,21 @@ function SetupVideo() {
         setVideo({ ...video, [e.target.name]: e.target.value })
     }
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault()
         if (!video.videoId) {
-            setErrorMessage('101-pls press decode to get video ID')
+            setErrorMessage(sysMsg[0])
         } else {
-            console.log("video:", video)
             setIsLoading(true)
-            // send api
-            setTimeout(() => {
-                setIsLoading(false)
-            }, 3000);
+            const { okStatus, data } = await createVideoAPI(video)
+            setIsLoading(false)
+            if (okStatus) {
+                handleCancel()
+            }
+            else {
+                setErrorMessage(data)
+            }
         }
-
     }
 
     const handleDecodeURL = () => {
@@ -57,6 +63,7 @@ function SetupVideo() {
             description: "",
             thumbnailUrl: ""
         })
+        setErrorMessage('')
     }
 
     return (

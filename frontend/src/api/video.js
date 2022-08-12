@@ -2,13 +2,13 @@ import axios from 'axios'
 
 const url = 'http://localhost:4000'
 
-export const createVideoAPI = async (user) => {
+export const createVideoAPI = async (video) => {
     try {
-        const response = await axios.post(`${url}/user/signup`, user)
-        // console.log("signupAPI() success:", response)
+        const response = await axios.post(`${url}/video`, video)
+        // console.log("createVideoAPI() success:", response)
         return { okStatus: true, data: response.data }
     } catch (error) {
-        // console.log("signupAPI() error:", error.response.data.error)
+        // console.log("createVideoAPI() error:", error.response.data.error)
         return { okStatus: false, data: error.response.data.error }
     }
 }
