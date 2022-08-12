@@ -1,57 +1,75 @@
-import { useContext } from 'react'
-import { Card, CardHeader, CardMedia, CardContent, Avatar, IconButton, Typography, Box } from '@mui/material';
-import { deepOrange } from '@mui/material/colors';
-import MoreVertIcon from '@mui/icons-material/MoreVert';
-import { useNavigate } from 'react-router-dom';
-import { VideoContext } from '../../App';
+import { useState, useContext } from 'react'
+import { Box, Card, CardMedia, CardContent, IconButton, Typography, CardActions } from '@mui/material'
+import { deepOrange } from '@mui/material/colors'
+import DeleteIcon from '@mui/icons-material/Delete'
+import EditIcon from '@mui/icons-material/Edit'
+import { useNavigate } from 'react-router-dom'
+import { VideoContext } from '../../App'
+import { deleteVideoAPI } from '../../api/video'
+import CircularProgress from '@mui/material/CircularProgress'
 
 
 function VideoInfo({ filter }) {
-    const { videoData } = useContext(VideoContext)
-    const navigate = useNavigate();
+    const { videoData, setVideoData } = useContext(VideoContext)
+    const navigate = useNavigate()
+    const [errorMessage, setErrorMessage] = useState('')
+    const [isLoading, setIsLoading] = useState(false)
 
-    let data = videoData;
+    let currentData = videoData;
     if (filter) {
-        data = videoData.filter((item) => (item.subCategory === filter.subCategory && item.category === filter.category));
+        currentData = videoData.filter((item) => (item.subCategory === filter.subCategory && item.category === filter.category))
     }
 
-    const openVideo = (id) => {
-        navigate(`/home/video/${id}`, { replace: true });
+    const openVideo = (videoId) => {
+        navigate(`/home/video/${videoId}`, { replace: true })
+    }
+
+    const editVideo = (id) => {
+        navigate(`/setup/video/${id}`, { replace: true })
+    }
+
+    const deleteVideo = async (id) => {
+        const { okStatus, data } = await deleteVideoAPI(id)
+        setIsLoading(true)
+        setErrorMessage('')
+        if (okStatus) {
+            const newVideoData = videoData.filter((item) => (item._id !== id))
+            setVideoData(newVideoData)
+            setErrorMessage('')
+        } else {
+            setErrorMessage(data)
+        }
+        setIsLoading(false)
     }
 
     return (
         <>
-
-            {data.map((item) => (
-
+            {isLoading && <Box sx={{ display: 'flex' }}><CircularProgress /></Box>}
+            {errorMessage && <Typography variant="h6" component="h6" align='left' color='red' m={1} >{errorMessage}</Typography>}
+            {currentData.map((item) => (
                 <Card key={item._id} sx={{ maxWidth: 250, padding: 1 }}>
+                    <Typography sx={{ fontSize: 18, fontWeight: 'bold', color: deepOrange[600] }} gutterBottom>
+                        {item.title}
+                    </Typography>
+                    <Typography sx={{ fontSize: 12 }} gutterBottom>
+                        Published at: {item.publishedAt}
+                    </Typography>
+                    <CardActions>
+                        <IconButton onClick={() => editVideo(item._id)}><EditIcon /></IconButton>
+                        <IconButton onClick={() => deleteVideo(item._id)}><DeleteIcon /></IconButton>
+                    </CardActions>
                     <CardMedia
                         component="img"
-                        // height="200"
-                        // width="350"
                         image={item.thumbnailUrl}
                         alt={item.title}
                         onClick={() => openVideo(item.videoId)}
                     />
-                    <CardHeader sx={{ color: deepOrange[600], }}
-                        // avatar={<Avatar sx={{ bgcolor: deepOrange[600], width: 56, height: 56 }}>Save</Avatar>}
-                        action={<IconButton aria-label="settings"><MoreVertIcon /></IconButton>}
-                        title={item.title}
-                        subheader={item.publishedAt}
-                    />
+
                     <CardContent>
                         <Typography variant="body2" color="text.secondary">
-                            {item.description}
+                            {item.publishedAT} {item.description}
                         </Typography>
                     </CardContent>
-                    {/* <CardActions disableSpacing>
-                        <IconButton aria-label="add to favorites">
-                            <FavoriteIcon />
-                        </IconButton>
-                        <IconButton aria-label="share">
-                            <ShareIcon />
-                        </IconButton>
-                    </CardActions> */}
                 </Card>
             ))}
         </>

@@ -46,3 +46,13 @@ export const getVideosAPI = async () => {
     }
 }
 
+export const deleteVideoAPI = async (id) => {
+    try {
+        const response = await axios.delete(`${url}/video/${id}`)
+        console.log("deleteVideoAPI() success:", response)
+        return { okStatus: true, data: response.data }
+    } catch (error) {
+        console.log("deleteVideoAPI() error:", error.response.data.error)
+        return { okStatus: false, data: error.response.data.error }
+    }
+}
