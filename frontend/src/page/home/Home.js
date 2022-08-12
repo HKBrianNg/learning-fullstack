@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState, useContext } from 'react'
 import PropTypes from 'prop-types'
 import Tabs from '@mui/material/Tabs'
 import Tab from '@mui/material/Tab'
@@ -15,20 +15,12 @@ import { data as Docker } from '../../data/DockerData'
 import { data as React } from '../../data/ReactData'
 import { data as MERN } from '../../data/MERNData'
 import { data as Microservices } from '../../data/MicroservicesData'
-import VideoInfo from '../../component/video/VideoInfo'
+import { videoCategory } from '../../constant'
+import CircularProgress from '@mui/material/CircularProgress'
+import { getVideosAPI } from '../../api/video'
+import { VideoContext } from '../../App'
 
 
-const filterData = [
-    { category: 'IT', subCategory: 'AppService' },
-    { category: 'IT', subCategory: 'DevOps' },
-    { category: 'IT', subCategory: 'CICD' },
-    { category: 'IT', subCategory: 'IDE' },
-    { category: 'IT', subCategory: 'GitHub' },
-    { category: 'IT', subCategory: 'Docker' },
-    { category: 'IT', subCategory: 'React' },
-    { category: 'IT', subCategory: 'MERN' },
-    { category: 'IT', subCategory: 'Microservices' }
-]
 function TabPanel(props) {
     const { children, value, index, ...other } = props
 
@@ -64,11 +56,32 @@ function a11yProps(index) {
 
 function Home() {
     const [value, setValue] = useState(0)
-    const [filter, setFilter] = useState(filterData[0])
+    const [filter, setFilter] = useState(videoCategory[0])
+    const [isLoading, setIsLoading] = useState(false)
+    const [errorMessage, setErrorMessage] = useState('')
+    const { setVideoData } = useContext(VideoContext)
+
+    const getVideos = async () => {
+        setIsLoading(true)
+        setErrorMessage('')
+        const { okStatus, data } = await getVideosAPI()
+        if (okStatus) {
+            setVideoData(data)
+        }
+        else {
+            setErrorMessage(data)
+        }
+        setIsLoading(false)
+    }
+
+    useEffect(() => {
+        getVideos()
+    }, [])
+
 
     const handleChange = (event, newValue) => {
         setValue(newValue)
-        setFilter(filterData[newValue])
+        setFilter(videoCategory[newValue])
     }
 
     return (
@@ -92,41 +105,36 @@ function Home() {
                         </Tabs>
                     </Box>
 
-
                     <TabPanel value={value} index={0}>
-                        <TabTemplate data={AppService} />
+                        <TabTemplate data={AppService} filter={filter} />
                     </TabPanel>
                     <TabPanel value={value} index={1}>
-                        <TabTemplate data={DevOps} />
+                        <TabTemplate data={DevOps} filter={filter} />
                     </TabPanel>
                     <TabPanel value={value} index={2}>
-                        <TabTemplate data={CICD} />
+                        <TabTemplate data={CICD} filter={filter} />
                     </TabPanel>
                     <TabPanel value={value} index={3}>
-                        <TabTemplate data={IDE} />
+                        <TabTemplate data={IDE} filter={filter} />
                     </TabPanel>
                     <TabPanel value={value} index={4}>
-                        <TabTemplate data={GitHub} />
+                        <TabTemplate data={GitHub} filter={filter} />
                     </TabPanel>
                     <TabPanel value={value} index={5}>
-                        <TabTemplate data={Docker} />
+                        <TabTemplate data={Docker} filter={filter} />
                     </TabPanel>
                     <TabPanel value={value} index={6}>
-                        <TabTemplate data={React} />
+                        <TabTemplate data={React} filter={filter} />
                     </TabPanel>
                     <TabPanel value={value} index={7}>
-                        <TabTemplate data={MERN} />
+                        <TabTemplate data={MERN} filter={filter} />
                     </TabPanel>
                     <TabPanel value={value} index={8}>
-                        <TabTemplate data={Microservices} />
+                        <TabTemplate data={Microservices} filter={filter} />
                     </TabPanel>
                 </Box>
-                <Box sx={{ flexGrow: 1, padding: 1, display: { xs: 'none', md: 'flex' }, flexWrap: 'wrap' }}>
-                    <VideoInfo filter={filter} />
-                </Box>
-                <Box sx={{ flexGrow: 1, padding: 1, display: { xs: 'flex', md: 'none' }, flexWrap: 'wrap' }}>
-                    <VideoInfo filter={filter} />
-                </Box>
+                {isLoading && <Box sx={{ display: 'flex' }}><CircularProgress /></Box>}
+                {errorMessage && <Typography variant="h6" component="h6" align='left' color='red' m={1} >{errorMessage}</Typography>}
             </Container>
         </>
     );

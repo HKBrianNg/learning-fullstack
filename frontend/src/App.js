@@ -12,9 +12,12 @@ import SetupTab from './page/setup/SetupTab'
 
 
 export const AppContext = createContext(null)
+export const VideoContext = createContext(null)
 
 function App() {
   const [app, setApp] = useState({ email: '', token: '' })
+  const [videoData, setVideoData] = useState([])
+
   // const [appTheme, setAppTheme] = useState('light');
 
   // const theme = createTheme({
@@ -28,16 +31,18 @@ function App() {
     // <ThemeProvider theme={theme}>
     <div className="App">
       <AppContext.Provider value={{ app, setApp }}>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/home" element={<Home />} />
-          <Route path="/home/video/:id" element={<VideoDetails />} />
-          <Route path="/auth/login" element={<Login />} />
-          <Route path="/auth/signup" element={<Signup />} />
-          <Route path="/auth/logout" element={<Logout />} />
-          <Route path="/setup/video" element={<SetupVideo />} />
-          <Route path="/setup/tab" element={<SetupTab />} />
-        </Routes>
+        <VideoContext.Provider value={{ videoData, setVideoData }}>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/home" element={<Home />} />
+            <Route path="/home/video/:id" element={<VideoDetails />} />
+            <Route path="/auth/login" element={<Login />} />
+            <Route path="/auth/signup" element={<Signup />} />
+            <Route path="/auth/logout" element={<Logout />} />
+            <Route path="/setup/video/:id" element={<SetupVideo />} />
+            <Route path="/setup/tab" element={<SetupTab />} />
+          </Routes>
+        </VideoContext.Provider>
       </AppContext.Provider>
     </div>
     // </ThemeProvider>

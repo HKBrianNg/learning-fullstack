@@ -1,12 +1,14 @@
-import { Card, CardHeader, CardMedia, CardContent, Avatar, IconButton, Typography } from '@mui/material';
+import { useContext } from 'react'
+import { Card, CardHeader, CardMedia, CardContent, Avatar, IconButton, Typography, Box } from '@mui/material';
 import { deepOrange } from '@mui/material/colors';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
-import { videoData } from '../../data/videoData';
 import { useNavigate } from 'react-router-dom';
+import { VideoContext } from '../../App';
 
 
 function VideoInfo({ filter }) {
-    let navigate = useNavigate();
+    const { videoData } = useContext(VideoContext)
+    const navigate = useNavigate();
 
     let data = videoData;
     if (filter) {
@@ -19,9 +21,10 @@ function VideoInfo({ filter }) {
 
     return (
         <>
+
             {data.map((item) => (
 
-                <Card key={item.id} sx={{ maxWidth: 250, padding: 2 }}>
+                <Card key={item._id} sx={{ maxWidth: 250, padding: 1 }}>
                     <CardMedia
                         component="img"
                         // height="200"
@@ -31,7 +34,7 @@ function VideoInfo({ filter }) {
                         onClick={() => openVideo(item.videoId)}
                     />
                     <CardHeader sx={{ color: deepOrange[600], }}
-                        avatar={<Avatar sx={{ bgcolor: deepOrange[600], width: 56, height: 56 }}>Save</Avatar>}
+                        // avatar={<Avatar sx={{ bgcolor: deepOrange[600], width: 56, height: 56 }}>Save</Avatar>}
                         action={<IconButton aria-label="settings"><MoreVertIcon /></IconButton>}
                         title={item.title}
                         subheader={item.publishedAt}

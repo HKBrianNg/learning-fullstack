@@ -1,11 +1,14 @@
 import { useState, useContext } from 'react'
-import { AppBar, Container, Box, Toolbar, Typography, Menu, MenuItem, Avatar, Select } from '@mui/material'
+import { AppBar, Container, Box, Toolbar, Typography, Menu, MenuItem, Avatar, IconButton } from '@mui/material'
 import MenuIcon from '@mui/icons-material/Menu'
 import LocalLibraryIcon from '@mui/icons-material/LocalLibrary'
 import SearchVideo from './SearchVideo.js'
 import { Link } from 'react-router-dom'
 import { AppContext } from '../../App'
-import { deepOrange } from '@mui/material/colors';
+import { deepOrange } from '@mui/material/colors'
+import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline'
+import { useNavigate } from 'react-router-dom'
+
 
 const DisplayLogo = () => {
     return (
@@ -23,6 +26,7 @@ function Navbar() {
     const [anchorElUser, setAnchorElUser] = useState(null)
     const open = Boolean(anchorEl)
     const openUser = Boolean(anchorElUser)
+    const navigate = useNavigate()
 
     // const [user, setUser] = useState(null)
 
@@ -40,6 +44,10 @@ function Navbar() {
 
     const handleUserClose = () => {
         setAnchorElUser(null)
+    }
+
+    const handleVideoClick = () => {
+        navigate('/setup/video/0', { replace: true })
     }
 
     const SetupMenu = () => {
@@ -88,6 +96,9 @@ function Navbar() {
                     <Box sx={{ flexGrow: 2, margin: 1, display: { xs: 'none', md: 'flex' } }}>
                         <SearchVideo />
                     </Box>
+                    <IconButton size='large' onClick={handleVideoClick}>
+                        <AddCircleOutlineIcon fontSize='large' sx={{ color: 'white' }} />
+                    </IconButton>
                     {app.email ?
                         (<Avatar onClick={handleUserClick} sx={{ bgcolor: deepOrange[500] }}>{app.email.substring(0, 1)}</Avatar>) :
                         (<Avatar onClick={handleUserClick} sx={{}} />)
