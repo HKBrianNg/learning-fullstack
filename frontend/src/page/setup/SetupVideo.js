@@ -118,6 +118,7 @@ function SetupVideo() {
                                         <MenuItem value='Docker'>Docker</MenuItem>
                                         <MenuItem value='React'>React</MenuItem>
                                         <MenuItem value='MERN'>MERN</MenuItem>
+                                        <MenuItem value='Microservices'>Microservices</MenuItem>
                                     </Select>
                                 </FormControl>
                             </Stack>
