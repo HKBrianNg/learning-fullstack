@@ -1,56 +1,35 @@
-import React, { useState } from 'react';
-import { Container, Box, Stack, Paper, Typography, Accordion, AccordionSummary, AccordionDetails, Link } from '@mui/material';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import { grey } from '@mui/material/colors';
+import { useState } from 'react'
+import { Container, Stack, Box } from '@mui/material';
+import Summary from '../../component/summary/Summary'
 import VideoInfo from '../../component/video/VideoInfo'
+import SetupVideo from '../setup/SetupVideo';
 
 
 function TabTemplate({ data, filter }) {
-    const [expanded, setExpanded] = useState(false);
-
-    const handleChange = (panel) => (event, isExpanded) => {
-        setExpanded(isExpanded ? panel : false);
-    };
-
+    const [selectedId, setSelectedId] = useState("-1")
 
     return (
         <>
             <Container maxWidth='xl'>
                 <Stack display='flex' direction={{ xs: 'column', md: 'row' }} >
+                    {(selectedId === "-1") &&
+                        <Box sx={{ display: "flex", flex: 1 }}>
+                            <Summary data={data} setSelectedId={setSelectedId} />
+                        </Box>
+                    }
+                    {(selectedId === "0") &&
+                        <Box sx={{ display: "flex", flex: 1 }}>
+                            <SetupVideo selectedId={selectedId} setSelectedId={setSelectedId} />
+                        </Box>
+                    }
+                    {(selectedId !== "0" && selectedId !== "-1") &&
+                        <Box sx={{ display: "flex", flex: 1 }}>
+                            <SetupVideo selectedId={selectedId} setSelectedId={setSelectedId} />
+                        </Box>
+                    }
                     <Box sx={{ flex: 1 }}>
-                        <Paper padding={3}>
-                            <Typography variant="h4" gutterBottom component="div" align='center'>
-                                {data.title}
-                            </Typography>
-                            <Typography variant="h6" gutterBottom component="div" sx={{ paddingX: 2 }} >
-                                {data.summary}
-                            </Typography>
-                            <Typography variant='body1' gutterBottom component="div" sx={{ padding: 2, color: grey[600] }}>
-                                {data.content}
-                            </Typography>
-                            {data.items.map((item) => (
-                                <Accordion key={item.id} expanded={expanded === item.id} onChange={handleChange(item.id)}>
-                                    <AccordionSummary
-                                        expandIcon={<ExpandMoreIcon />}
-                                    >
-                                        <Typography sx={{ width: '33%', flexShrink: 0 }}>
-                                            {item.title}
-                                        </Typography>
-                                        <Typography sx={{ color: 'text.secondary' }}>{item.summary}</Typography>
-                                    </AccordionSummary>
-                                    <AccordionDetails>
-                                        {item.content.substring(0, 4) === 'http'
-                                            ? (<Link target="_blank" rel="noopener" href={item.content}>{item.content}</Link>)
-                                            : (item.content)
-                                        }
-                                    </AccordionDetails>
-                                </Accordion>
-                            ))}
-                        </Paper>
+                        <VideoInfo filter={filter} setSelectedId={setSelectedId} />
                     </Box>
-                    <Stack flex={1} display='flex' direction='row' flexWrap='wrap'>
-                        <VideoInfo filter={filter} />
-                    </Stack>
                 </Stack>
 
             </Container>

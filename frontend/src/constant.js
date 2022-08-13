@@ -1,11 +1,11 @@
 export const videoCategory = [
-    { category: 'IT', subCategory: 'AppService' },
-    { category: 'IT', subCategory: 'DevOps' },
-    { category: 'IT', subCategory: 'CICD' },
-    { category: 'IT', subCategory: 'IDE' },
-    { category: 'IT', subCategory: 'GitHub' },
-    { category: 'IT', subCategory: 'Docker' },
-    { category: 'IT', subCategory: 'React' },
-    { category: 'IT', subCategory: 'MERN' },
-    { category: 'IT', subCategory: 'Microservices' }
+    { category: 'IT', value: '0', subCategory: 'AppService' },
+    { category: 'IT', value: '1', subCategory: 'DevOps' },
+    { category: 'IT', value: '2', subCategory: 'CICD' },
+    { category: 'IT', value: '3', subCategory: 'IDE' },
+    { category: 'IT', value: '4', subCategory: 'GitHub' },
+    { category: 'IT', value: '5', subCategory: 'Docker' },
+    { category: 'IT', value: '6', subCategory: 'React' },
+    { category: 'IT', value: '7', subCategory: 'MERN' },
+    { category: 'IT', value: '8', subCategory: 'Microservices' }
 ]

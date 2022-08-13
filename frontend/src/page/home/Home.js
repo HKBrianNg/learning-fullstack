@@ -1,9 +1,6 @@
-import { useEffect, useState, useContext } from 'react'
-import PropTypes from 'prop-types'
-import Tabs from '@mui/material/Tabs'
-import Tab from '@mui/material/Tab'
-import { Typography, Container } from '@mui/material'
-import Box from '@mui/material/Box'
+import { useState, useEffect, useContext } from 'react';
+import { Box, Tab, Typography } from '@mui/material';
+import { TabContext, TabList, TabPanel } from '@mui/lab';
 import Navbar from '../../component/header/Navbar'
 import TabTemplate from './TabTemplate'
 import { data as AppService } from '../../data/AppServiceData'
@@ -18,48 +15,18 @@ import { data as Microservices } from '../../data/MicroservicesData'
 import { videoCategory } from '../../constant'
 import CircularProgress from '@mui/material/CircularProgress'
 import { getVideosAPI } from '../../api/video'
-import { VideoContext } from '../../App'
+import { VideoContext, AppContext } from '../../App'
+import SetupVideo from '../setup/SetupVideo';
 
-
-function TabPanel(props) {
-    const { children, value, index, ...other } = props
-
-    return (
-        <div
-            role="tabpanel"
-            hidden={value !== index}
-            id={`simple-tabpanel-${index}`}
-            aria-labelledby={`simple-tab-${index}`}
-            {...other}
-        >
-            {value === index && (
-                <Box sx={{ p: 3 }}>
-                    <Typography component='span'>{children}</Typography>
-                </Box>
-            )}
-        </div>
-    );
-}
-
-TabPanel.propTypes = {
-    children: PropTypes.node,
-    index: PropTypes.number.isRequired,
-    value: PropTypes.number.isRequired,
-};
-
-function a11yProps(index) {
-    return {
-        id: `simple-tab-${index}`,
-        'aria-controls': `simple-tabpanel-${index}`,
-    };
-}
 
 function Home() {
-    const [value, setValue] = useState(0)
-    const [filter, setFilter] = useState(videoCategory[0])
     const [isLoading, setIsLoading] = useState(false)
     const [errorMessage, setErrorMessage] = useState('')
+    const [value, setValue] = useState('0');
+    const [filter, setFilter] = useState(videoCategory[0])
     const { setVideoData } = useContext(VideoContext)
+    const { app, setApp } = useContext(AppContext)
+
 
     const getVideos = async () => {
         setIsLoading(true)
@@ -79,65 +46,76 @@ function Home() {
     }, [])
 
 
+
     const handleChange = (event, newValue) => {
-        setValue(newValue)
+        setValue(newValue);
         setFilter(videoCategory[newValue])
+        setApp({ ...app, currentTab: value })
+    };
+
+
+    const ShowTabPanel = () => {
+        return (
+            <>
+                <TabPanel value='0'>
+                    <TabTemplate data={AppService} filter={filter} />
+                </TabPanel>
+                <TabPanel value='1'>
+                    <TabTemplate data={DevOps} filter={filter} />
+                </TabPanel>
+                <TabPanel value='2'>
+                    <TabTemplate data={CICD} filter={filter} />
+                </TabPanel>
+                <TabPanel value='3'>
+                    <TabTemplate data={IDE} filter={filter} />
+                </TabPanel>
+                <TabPanel value='4'>
+                    <TabTemplate data={GitHub} filter={filter} />
+                </TabPanel>
+                <TabPanel value='5'>
+                    <TabTemplate data={Docker} filter={filter} />
+                </TabPanel>
+                <TabPanel value='6'>
+                    <TabTemplate data={React} filter={filter} />
+                </TabPanel>
+                <TabPanel value='7'>
+                    <TabTemplate data={MERN} filter={filter} />
+                </TabPanel>
+                <TabPanel value='8'>
+                    <TabTemplate data={Microservices} filter={filter} />
+                </TabPanel>
+            </>
+        )
     }
 
     return (
         <>
             <Navbar />
-            <Container maxWidth='xl'>
-
-                <Box sx={{ width: '100%' }}>
-                    <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-                        <Tabs position="sticky" variant="scrollable" scrollButtons="auto"
-                            allowScrollButtonsMobile value={value} onChange={handleChange} aria-label="basic tabs example">
-                            <Tab label="Application Service" {...a11yProps(0)} />
-                            <Tab label="DevOps" {...a11yProps(1)} />
-                            <Tab label="CICD" {...a11yProps(2)} />
-                            <Tab label="IDE" {...a11yProps(3)} />
-                            <Tab label="GitHub" {...a11yProps(4)} />
-                            <Tab label="Docker" {...a11yProps(5)} />
-                            <Tab label="React" {...a11yProps(6)} />
-                            <Tab label="MERN" {...a11yProps(7)} />
-                            <Tab label="Microservices" {...a11yProps(8)} />
-                        </Tabs>
+            <Box sx={{ width: '100%', typography: 'body1', position: "sticky" }}>
+                <TabContext value={value}>
+                    <Box sx={{ borderBottom: 1, borderColor: 'divider', }}>
+                        <TabList onChange={handleChange} variant="scrollable" scrollButtons="auto" allowScrollButtonsMobile value={value}>
+                            <Tab label="Application Service" value="0" />
+                            <Tab label="DevOps" value="1" />
+                            <Tab label="CICD" value="2" />
+                            <Tab label="IDE" value="3" />
+                            <Tab label="GitHub" value="4" />
+                            <Tab label="Docker" value="5" />
+                            <Tab label="React" value="6" />
+                            <Tab label="MERN" value="7" />
+                            <Tab label="Microservices" value="8" />
+                        </TabList>
                     </Box>
-
-                    <TabPanel value={value} index={0}>
-                        <TabTemplate data={AppService} filter={filter} />
-                    </TabPanel>
-                    <TabPanel value={value} index={1}>
-                        <TabTemplate data={DevOps} filter={filter} />
-                    </TabPanel>
-                    <TabPanel value={value} index={2}>
-                        <TabTemplate data={CICD} filter={filter} />
-                    </TabPanel>
-                    <TabPanel value={value} index={3}>
-                        <TabTemplate data={IDE} filter={filter} />
-                    </TabPanel>
-                    <TabPanel value={value} index={4}>
-                        <TabTemplate data={GitHub} filter={filter} />
-                    </TabPanel>
-                    <TabPanel value={value} index={5}>
-                        <TabTemplate data={Docker} filter={filter} />
-                    </TabPanel>
-                    <TabPanel value={value} index={6}>
-                        <TabTemplate data={React} filter={filter} />
-                    </TabPanel>
-                    <TabPanel value={value} index={7}>
-                        <TabTemplate data={MERN} filter={filter} />
-                    </TabPanel>
-                    <TabPanel value={value} index={8}>
-                        <TabTemplate data={Microservices} filter={filter} />
-                    </TabPanel>
-                </Box>
+                    <ShowTabPanel />
+                </TabContext>
                 {isLoading && <Box sx={{ display: 'flex' }}><CircularProgress /></Box>}
                 {errorMessage && <Typography variant="h6" component="h6" align='left' color='red' m={1} >{errorMessage}</Typography>}
-            </Container>
+            </Box>
         </>
     );
 }
 
-export default Home;
+export default Home
+
+
+

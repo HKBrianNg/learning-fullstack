@@ -35,10 +35,10 @@ export const getVideo = async (req, res) => {
 
 // create a video
 export const createVideo = async (req, res) => {
-    const { category, subCategory, source, videoUrl, videoId, publishedAt, title, description, thumbnailUrl } = req.body
+    const { id, category, subCategory, source, videoUrl, videoId, publishedAt, title, description, thumbnailUrl } = req.body
 
     try {
-        const newVideo = await Video.create({ category, subCategory, source, videoUrl, videoId, publishedAt, title, description, thumbnailUrl })
+        const newVideo = await Video.create({ id, category, subCategory, source, videoUrl, videoId, publishedAt, title, description, thumbnailUrl })
         res.status(200).json(newVideo)
     } catch (error) {
         res.status(400).json({ error: error.message })

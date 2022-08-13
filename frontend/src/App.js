@@ -10,12 +10,11 @@ import Home from './page/home/Home'
 import SetupVideo from './page/setup/SetupVideo'
 import SetupTab from './page/setup/SetupTab'
 
-
 export const AppContext = createContext(null)
 export const VideoContext = createContext(null)
 
 function App() {
-  const [app, setApp] = useState({ email: '', token: '' })
+  const [app, setApp] = useState({ email: '', token: '', currentTab: 0 })
   const [videoData, setVideoData] = useState([])
 
   // const [appTheme, setAppTheme] = useState('light');
