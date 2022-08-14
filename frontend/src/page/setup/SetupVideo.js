@@ -83,7 +83,7 @@ function SetupVideo({ selectedId, setSelectedId }) {
     }
 
     const handleDecodeURL = () => {
-        const videoId = video.videoUrl.substring(33)
+        const videoId = video.videoUrl.substring(32)
         const url = `https://i.ytimg.com/vi/${videoId}/maxresdefault.jpg`
         setVideo({ ...video, videoId: videoId, thumbnailUrl: url })
         setErrorMessage('')
@@ -122,7 +122,7 @@ function SetupVideo({ selectedId, setSelectedId }) {
                             <TextField name="id" required fullWidth label="ID" size='small' value={video.id} onChange={handleChange} />
                         </Stack>
                         <Stack direction="row" spacing={2} m={2}>
-                            <TextField name="videoUrl" fullWidth required label="Video URL" size='small' value={video.videoUrl} onChange={handleChange} />
+                            <TextField name="videoUrl" fullWidth label="Video URL" size='small' value={video.videoUrl} onChange={handleChange} />
                         </Stack>
                         <Stack direction="row" spacing={2} m={2}>
                             <TextField name="videoId" required label="Video ID" size='small' value={video.videoId} onChange={handleChange} />

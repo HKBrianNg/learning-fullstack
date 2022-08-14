@@ -16,7 +16,6 @@ import { videoCategory } from '../../constant'
 import CircularProgress from '@mui/material/CircularProgress'
 import { getVideosAPI } from '../../api/video'
 import { VideoContext, AppContext } from '../../App'
-import SetupVideo from '../setup/SetupVideo';
 
 
 function Home() {

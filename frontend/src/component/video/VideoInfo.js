@@ -8,7 +8,6 @@ import { VideoContext } from '../../App'
 import { deleteVideoAPI } from '../../api/video'
 import CircularProgress from '@mui/material/CircularProgress'
 
-
 function VideoInfo({ filter, setSelectedId }) {
     const { videoData, setVideoData } = useContext(VideoContext)
     const navigate = useNavigate()
@@ -41,15 +40,16 @@ function VideoInfo({ filter, setSelectedId }) {
         setIsLoading(false)
     }
 
+
     const handlleEditClick = (id) => {
         setSelectedId(id)
     }
+
 
     return (
         <>
             {isLoading && <Box sx={{ display: 'flex' }}><CircularProgress /></Box>}
             {errorMessage && <Typography variant="h6" component="h6" align='left' color='red' m={1} >{errorMessage}</Typography>}
-
             <Box sx={{ display: 'flex', direction: 'row', flexWrap: 'wrap' }}>
                 {currentData.map((item) => (
                     <Card key={item._id} sx={{ maxWidth: 250, padding: 1 }}>

@@ -1,7 +1,7 @@
 export const welcomeMsg = {
-    "lastUpdateAt": "2022-8-5 15:33",
+    "lastUpdateAt": "2022-8-14",
     "message": "Welcome to Learning API",
-    "version": "1.0.4"
+    "version": "1.0.5"
 }
 
 export const sysMsg = [
@@ -15,7 +15,8 @@ export const sysMsg = [
     "007-Name, email and password must be filled.",
     "008-Email is not valid.",
     "009-Password is not strong enough.",
-    "010-Incorrect email."
+    "010-Incorrect email.",
+    "011-No topic is found."
 ]
 
 export const httpMsg = [
