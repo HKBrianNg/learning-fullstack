@@ -1,5 +1,5 @@
 import React from 'react'
-import Navbar from '../header/Navbar';
+import Navbar from '../../component/header/Navbar';
 import { useParams } from 'react-router-dom';
 import ReactPlayer from "react-player";
 import { Container } from '@mui/material';

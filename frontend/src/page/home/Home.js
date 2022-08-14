@@ -1,8 +1,7 @@
 import { useState, useEffect, useContext } from 'react';
-import { Box, Tab, Typography } from '@mui/material';
+import { Container, Stack, Box, Tab, Typography } from '@mui/material';
 import { TabContext, TabList, TabPanel } from '@mui/lab';
 import Navbar from '../../component/header/Navbar'
-import TabTemplate from './TabTemplate'
 import { data as AppService } from '../../data/AppServiceData'
 import { data as DevOps } from '../../data/DevOpsData'
 import { data as CICD } from '../../data/CICDData'
@@ -16,6 +15,9 @@ import { videoCategory } from '../../constant'
 import CircularProgress from '@mui/material/CircularProgress'
 import { getVideosAPI } from '../../api/video'
 import { VideoContext, AppContext } from '../../App'
+import VideoList from './VideoList'
+import SetupVideo from './SetupVideo';
+import Summary from './Summary'
 
 
 function Home() {
@@ -25,6 +27,8 @@ function Home() {
     const [filter, setFilter] = useState(videoCategory[0])
     const { setVideoData } = useContext(VideoContext)
     const { app, setApp } = useContext(AppContext)
+    const [selectedId, setSelectedId] = useState("-1")
+
 
 
     const getVideos = async () => {
@@ -51,6 +55,59 @@ function Home() {
         setFilter(videoCategory[newValue])
         setApp({ ...app, currentTab: value })
     };
+
+
+    const TabTemplate = ({ data, filter }) => {
+
+        return (
+            <>
+                <Container maxWidth='xl'>
+                    <Stack display='flex' direction={{ xs: 'column', md: 'row' }} >
+                        {(selectedId === "-1") &&
+                            <Box sx={{
+                                display: "flex", flex: 1,
+                                flexDirection: "column",
+                                height: 600,
+                                overflowY: "scroll",
+                            }}>
+                                <Summary data={data} setSelectedId={setSelectedId} />
+                            </Box>
+                        }
+                        {(selectedId === "0") &&
+                            <Box sx={{
+                                display: "flex", flex: 1,
+                                flexDirection: "column",
+                                height: 600,
+                                overflowY: "scroll"
+                            }}>
+                                <SetupVideo selectedId={selectedId} setSelectedId={setSelectedId} />
+                            </Box>
+                        }
+                        {(selectedId !== "0" && selectedId !== "-1") &&
+                            <Box sx={{
+                                display: "flex", flex: 1,
+                                flexDirection: "column",
+                                height: 600,
+                                overflowY: "scroll",
+                            }}>
+                                <SetupVideo selectedId={selectedId} setSelectedId={setSelectedId} />
+                            </Box>
+                        }
+                        <Box sx={{
+                            flex: 1, display: "flex",
+                            flexDirection: "column",
+                            height: 600,
+                            // overflow: "hidden",
+                            overflowY: "scroll",
+                        }}>
+                            <VideoList filter={filter} setSelectedId={setSelectedId} />
+                        </Box>
+                    </Stack>
+
+                </Container>
+            </>
+        )
+    }
 
 
     const ShowTabPanel = () => {

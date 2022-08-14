@@ -1,5 +1,5 @@
 import { useState, useContext } from 'react'
-import { Box, Card, CardMedia, CardContent, IconButton, Typography, CardActions } from '@mui/material'
+import { Box, Card, CardMedia, CardContent, IconButton, Typography, CardActions, Tooltip } from '@mui/material'
 import { deepOrange } from '@mui/material/colors'
 import DeleteIcon from '@mui/icons-material/Delete'
 import EditIcon from '@mui/icons-material/Edit'
@@ -8,7 +8,7 @@ import { VideoContext } from '../../App'
 import { deleteVideoAPI } from '../../api/video'
 import CircularProgress from '@mui/material/CircularProgress'
 
-function VideoInfo({ filter, setSelectedId }) {
+function VideoList({ filter, setSelectedId }) {
     const { videoData, setVideoData } = useContext(VideoContext)
     const navigate = useNavigate()
     const [errorMessage, setErrorMessage] = useState('')
@@ -23,7 +23,7 @@ function VideoInfo({ filter, setSelectedId }) {
     }
 
     const openVideo = (videoId) => {
-        navigate(`/home/video/${videoId}`, { replace: true })
+        navigate(`/video/${videoId}`, { replace: true })
     }
 
     const deleteVideo = async (id) => {
@@ -60,15 +60,21 @@ function VideoInfo({ filter, setSelectedId }) {
                             Published at: {item.publishedAt}
                         </Typography>
                         <CardActions>
-                            <IconButton onClick={() => handlleEditClick(item._id)}><EditIcon /></IconButton>
-                            <IconButton onClick={() => deleteVideo(item._id)}><DeleteIcon /></IconButton>
+                            <Tooltip title="Edit Video">
+                                <IconButton onClick={() => handlleEditClick(item._id)}><EditIcon /></IconButton>
+                            </Tooltip>
+                            <Tooltip title="Delete Video">
+                                <IconButton onClick={() => deleteVideo(item._id)}><DeleteIcon /></IconButton>
+                            </Tooltip>
                         </CardActions>
-                        <CardMedia
-                            component="img"
-                            image={item.thumbnailUrl}
-                            alt={item.title}
-                            onClick={() => openVideo(item.videoId)}
-                        />
+                        <Tooltip title="Play Video">
+                            <CardMedia
+                                component="img"
+                                image={item.thumbnailUrl}
+                                alt={item.title}
+                                onClick={() => openVideo(item.videoId)}
+                            />
+                        </Tooltip>
 
                         <CardContent>
                             <Typography variant="body2" color="text.secondary">
@@ -84,4 +90,4 @@ function VideoInfo({ filter, setSelectedId }) {
 
 
 
-export default VideoInfo;
+export default VideoList;
