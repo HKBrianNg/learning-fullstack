@@ -5,13 +5,12 @@ import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline'
 import { AppContext } from '../../App';
 
 
-function TopicList({ data, setSelectedId }) {
+function TopicDetails({ data, setSelectedId }) {
     const { app } = useContext(AppContext)
 
     const handleCreateClick = () => {
         setSelectedId("0")
     }
-
 
     return (
         <Box sx={{ display: 'flex' }}>
@@ -39,4 +38,4 @@ function TopicList({ data, setSelectedId }) {
     )
 }
 
-export default TopicList
+export default TopicDetails

@@ -41,11 +41,9 @@ function VideoList({ filter, setSelectedId }) {
         setIsLoading(false)
     }
 
-
     const handlleEditClick = (id) => {
         setSelectedId(id)
     }
-
 
     return (
         <>
