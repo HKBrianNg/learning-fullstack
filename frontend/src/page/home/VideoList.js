@@ -4,11 +4,12 @@ import { deepOrange } from '@mui/material/colors'
 import DeleteIcon from '@mui/icons-material/Delete'
 import EditIcon from '@mui/icons-material/Edit'
 import { useNavigate } from 'react-router-dom'
-import { VideoContext } from '../../App'
+import { AppContext, VideoContext } from '../../App'
 import { deleteVideoAPI } from '../../api/video'
 import CircularProgress from '@mui/material/CircularProgress'
 
 function VideoList({ filter, setSelectedId }) {
+    const { app } = useContext(AppContext)
     const { videoData, setVideoData } = useContext(VideoContext)
     const navigate = useNavigate()
     const [errorMessage, setErrorMessage] = useState('')
@@ -60,12 +61,16 @@ function VideoList({ filter, setSelectedId }) {
                             Published at: {item.publishedAt}
                         </Typography>
                         <CardActions>
-                            <Tooltip title="Edit Video">
-                                <IconButton onClick={() => handlleEditClick(item._id)}><EditIcon /></IconButton>
-                            </Tooltip>
-                            <Tooltip title="Delete Video">
-                                <IconButton onClick={() => deleteVideo(item._id)}><DeleteIcon /></IconButton>
-                            </Tooltip>
+                            {app.email &&
+                                <div>
+                                    <Tooltip title="Edit Video">
+                                        <IconButton onClick={() => handlleEditClick(item._id)}><EditIcon /></IconButton>
+                                    </Tooltip>
+                                    <Tooltip title="Delete Video">
+                                        <IconButton onClick={() => deleteVideo(item._id)}><DeleteIcon /></IconButton>
+                                    </Tooltip>
+                                </div>
+                            }
                         </CardActions>
                         <Tooltip title="Play Video">
                             <CardMedia

@@ -1,13 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Box, Stack, Paper, Typography, Accordion, AccordionSummary, AccordionDetails, Link, IconButton, Tooltip } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { grey } from '@mui/material/colors';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline'
+import { AppContext } from '../../App';
 
 
 function Topic({ data, setSelectedId }) {
     const [expanded, setExpanded] = useState(false)
-
+    const { app } = useContext(AppContext)
 
     const handleChange = (panel) => (event, isExpanded) => {
         setExpanded(isExpanded ? panel : false)
@@ -25,11 +26,13 @@ function Topic({ data, setSelectedId }) {
                     <Typography variant="h4" gutterBottom component="div" align='center'>
                         {data.title}
                     </Typography>
-                    <Tooltip title="Add Video">
-                        <IconButton size='large' onClick={handleCreateClick} edge="end" sx={{ pb: 3 }}>
-                            <AddCircleOutlineIcon fontSize='medium' sx={{ color: 'primary' }} />
-                        </IconButton>
-                    </Tooltip>
+                    {app.email &&
+                        <Tooltip title="Add Video">
+                            <IconButton size='large' onClick={handleCreateClick} edge="end" sx={{ pb: 3 }}>
+                                <AddCircleOutlineIcon fontSize='medium' sx={{ color: 'primary' }} />
+                            </IconButton>
+                        </Tooltip>
+                    }
                 </Stack>
                 <Typography variant="h6" gutterBottom component="div" sx={{ paddingX: 2 }} >
                     {data.summary}
