@@ -2,14 +2,13 @@ import React from 'react'
 import Navbar from '../../component/header/Navbar'
 
 
-function SetupTab() {
+function User() {
     return (
         <>
             <Navbar />
-            <div>SetupTab</div>
+            <div>User</div>
         </>
-
     )
 }
 
-export default SetupTab
+export default User

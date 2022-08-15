@@ -5,7 +5,7 @@ import { grey } from '@mui/material/colors';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline'
 
 
-function Summary({ data, setSelectedId }) {
+function Topic({ data, setSelectedId }) {
     const [expanded, setExpanded] = useState(false)
 
 
@@ -60,4 +60,4 @@ function Summary({ data, setSelectedId }) {
     )
 }
 
-export default Summary
+export default Topic

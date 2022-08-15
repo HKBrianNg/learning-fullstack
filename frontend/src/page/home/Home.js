@@ -17,7 +17,7 @@ import { getVideosAPI } from '../../api/video'
 import { VideoContext, AppContext } from '../../App'
 import VideoList from './VideoList'
 import SetupVideo from './SetupVideo';
-import Summary from './Summary'
+import Topic from './Topic'
 
 
 function Home() {
@@ -70,7 +70,7 @@ function Home() {
                                 height: 600,
                                 overflowY: "scroll",
                             }}>
-                                <Summary data={data} setSelectedId={setSelectedId} />
+                                <Topic data={data} setSelectedId={setSelectedId} />
                             </Box>
                         }
                         {(selectedId === "0") &&
