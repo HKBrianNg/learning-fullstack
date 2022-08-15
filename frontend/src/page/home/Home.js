@@ -26,7 +26,7 @@ function Home() {
     const [errorMessage, setErrorMessage] = useState('')
     const [value, setValue] = useState('0');
     const [filter, setFilter] = useState(videoCategory[0])
-    const { setTopicData } = useContext(TopicContext)
+    const { topicData, setTopicData } = useContext(TopicContext)
     const { setVideoData } = useContext(VideoContext)
     const { app, setApp } = useContext(AppContext)
     const [selectedId, setSelectedId] = useState("-1")
@@ -127,35 +127,44 @@ function Home() {
 
 
     const ShowTabPanel = () => {
+        let AppService1
+        if (topicData.length > 0) {
+            AppService1 = topicData.filter((item) => item.category === "IT" && item.subCategory === "AppService")
+            console.log("topicData:", AppService1)
+        }
         return (
             <>
-                <TabPanel value='0'>
-                    <TabTemplate data={AppService} filter={filter} />
-                </TabPanel>
-                <TabPanel value='1'>
-                    <TabTemplate data={DevOps} filter={filter} />
-                </TabPanel>
-                <TabPanel value='2'>
-                    <TabTemplate data={CICD} filter={filter} />
-                </TabPanel>
-                <TabPanel value='3'>
-                    <TabTemplate data={IDE} filter={filter} />
-                </TabPanel>
-                <TabPanel value='4'>
-                    <TabTemplate data={GitHub} filter={filter} />
-                </TabPanel>
-                <TabPanel value='5'>
-                    <TabTemplate data={Docker} filter={filter} />
-                </TabPanel>
-                <TabPanel value='6'>
-                    <TabTemplate data={React} filter={filter} />
-                </TabPanel>
-                <TabPanel value='7'>
-                    <TabTemplate data={MERN} filter={filter} />
-                </TabPanel>
-                <TabPanel value='8'>
-                    <TabTemplate data={Microservices} filter={filter} />
-                </TabPanel>
+                {topicData.length > 0 &&
+                    <div>
+                        <TabPanel value='0'>
+                            <TabTemplate data={AppService} filter={filter} />
+                        </TabPanel>
+                        <TabPanel value='1'>
+                            <TabTemplate data={DevOps} filter={filter} />
+                        </TabPanel>
+                        <TabPanel value='2'>
+                            <TabTemplate data={CICD} filter={filter} />
+                        </TabPanel>
+                        <TabPanel value='3'>
+                            <TabTemplate data={IDE} filter={filter} />
+                        </TabPanel>
+                        <TabPanel value='4'>
+                            <TabTemplate data={GitHub} filter={filter} />
+                        </TabPanel>
+                        <TabPanel value='5'>
+                            <TabTemplate data={Docker} filter={filter} />
+                        </TabPanel>
+                        <TabPanel value='6'>
+                            <TabTemplate data={React} filter={filter} />
+                        </TabPanel>
+                        <TabPanel value='7'>
+                            <TabTemplate data={MERN} filter={filter} />
+                        </TabPanel>
+                        <TabPanel value='8'>
+                            <TabTemplate data={Microservices} filter={filter} />
+                        </TabPanel>
+                    </div>
+                }
             </>
         )
     }

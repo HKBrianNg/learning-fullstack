@@ -28,25 +28,6 @@ const topicSchema = new Schema({
     contentUrl: {
         type: String
     },
-    items: [
-        {
-            id: {
-                type: String,
-                required: true
-            },
-            title: {
-                type: String,
-                required: true
-            },
-            summary: {
-                type: String,
-                required: true
-            },
-            content: {
-                type: String
-            }
-        }
-    ],
 }, { timestamps: true })
 
 export default mongoose.model("topics", topicSchema);

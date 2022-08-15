@@ -1,18 +1,12 @@
-import React, { useState, useContext } from 'react';
-import { Box, Stack, Paper, Typography, Accordion, AccordionSummary, AccordionDetails, Link, IconButton, Tooltip } from '@mui/material';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import React, { useContext } from 'react';
+import { Box, Stack, Paper, Typography, IconButton, Tooltip } from '@mui/material';
 import { grey } from '@mui/material/colors';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline'
 import { AppContext } from '../../App';
 
 
 function TopicList({ data, setSelectedId }) {
-    const [expanded, setExpanded] = useState(false)
     const { app } = useContext(AppContext)
-
-    const handleChange = (panel) => (event, isExpanded) => {
-        setExpanded(isExpanded ? panel : false)
-    }
 
     const handleCreateClick = () => {
         setSelectedId("0")
@@ -34,30 +28,12 @@ function TopicList({ data, setSelectedId }) {
                         </Tooltip>
                     }
                 </Stack>
-                <Typography variant="h6" gutterBottom component="div" sx={{ paddingX: 2 }} >
+                <Typography variant="h6" gutterBottom component="div" sx={{ padding: 2 }} >
                     {data.summary}
                 </Typography>
                 <Typography variant='body1' gutterBottom component="div" sx={{ padding: 2, color: grey[600] }}>
                     {data.content}
                 </Typography>
-                {data.items.map((item) => (
-                    <Accordion key={item.id} expanded={expanded === item.id} onChange={handleChange(item.id)}>
-                        <AccordionSummary
-                            expandIcon={<ExpandMoreIcon />}
-                        >
-                            <Typography sx={{ width: '33%', flexShrink: 0 }}>
-                                {item.title}
-                            </Typography>
-                            <Typography sx={{ color: 'text.secondary' }}>{item.summary}</Typography>
-                        </AccordionSummary>
-                        <AccordionDetails>
-                            {item.content.substring(0, 4) === 'http'
-                                ? (<Link target="_blank" rel="noopener" href={item.content}>{item.content}</Link>)
-                                : (item.content)
-                            }
-                        </AccordionDetails>
-                    </Accordion>
-                ))}
             </Paper>
         </Box>
     )

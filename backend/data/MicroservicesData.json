@@ -5,13 +5,5 @@
     "title": "Microservices",
     "summary": "test",
     "content": "test",
-    "contentUrl": "",
-    "items": [
-        {
-            "id": "1",
-            "title": "Step 1",
-            "summary": "test",
-            "content": "test"
-        }
-    ]
+    "contentUrl": ""
 }
