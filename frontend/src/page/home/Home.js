@@ -3,7 +3,6 @@ import { Container, Stack, Box, Tab, Typography } from '@mui/material';
 import { TabContext, TabList, TabPanel } from '@mui/lab';
 import Navbar from '../../component/header/Navbar'
 import { data as React } from '../../data/ReactData'
-import { videoCategory } from '../../constant'
 import CircularProgress from '@mui/material/CircularProgress'
 import { getVideosAPI } from '../../api/video'
 import { getTopicsAPI } from '../../api/topic'
@@ -16,8 +15,8 @@ import TopicList from './TopicList'
 function Home() {
     const [isLoading, setIsLoading] = useState(false)
     const [errorMessage, setErrorMessage] = useState('')
-    const [value, setValue] = useState('0')
-    const [filter, setFilter] = useState(videoCategory[0])
+    const [value, setValue] = useState('AppService')
+    const [filter, setFilter] = useState({ category: 'IT', subCategory: 'AppService' })
     const { topicData, setTopicData } = useContext(TopicContext)
     const { setVideoData } = useContext(VideoContext)
     const { app, setApp } = useContext(AppContext)
@@ -30,6 +29,7 @@ function Home() {
         setErrorMessage('')
         const { okStatus, data } = await getTopicsAPI()
         if (okStatus) {
+
             setTopicData(data)
         }
         else {
@@ -67,13 +67,12 @@ function Home() {
 
     const handleChange = (event, newValue) => {
         setValue(newValue);
-        setFilter(videoCategory[newValue])
+        setFilter({ ...filter, subCategory: newValue })
         setApp({ ...app, currentTab: value })
     };
 
 
     const TabTemplate = ({ data, filter }) => {
-        console.log("filter:", filter)
         return (
             <>
                 <Container maxWidth='xl'>
@@ -112,7 +111,6 @@ function Home() {
                             flex: 1, display: "flex",
                             flexDirection: "column",
                             height: 600,
-                            // overflow: "hidden",
                             overflowY: "scroll",
                         }}>
                             <VideoList filter={filter} setSelectedId={setSelectedId} />
@@ -127,7 +125,7 @@ function Home() {
 
     const ShowTab = () => {
         const data = topicData
-            .filter((item) => item.category === "IT")
+            .filter((item) => item.category === filter.category)
             .sort((a, b) => { return a.id - b.id })
 
         return (
@@ -137,14 +135,14 @@ function Home() {
                         <TabList onChange={handleChange} variant="scrollable" scrollButtons="auto" allowScrollButtonsMobile value={value}>
                             {
                                 data.map((item) => (
-                                    <Tab key={item._id} label={item.subCategory} value={item.id} />
+                                    <Tab key={item._id} label={item.subCategory} value={item.subCategory} />
                                 ))
                             }
                         </TabList>
                     </Box>
                     {
                         data.map((item) => (
-                            <TabPanel key={item._id} value={item.id}>
+                            <TabPanel key={item._id} value={item.subCategory}>
                                 <TabTemplate data={item} filter={filter} />
                             </TabPanel>
                         ))
@@ -154,6 +152,7 @@ function Home() {
             </>
         )
     }
+
 
     return (
         <>
