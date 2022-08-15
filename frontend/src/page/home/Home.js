@@ -14,10 +14,11 @@ import { data as Microservices } from '../../data/MicroservicesData'
 import { videoCategory } from '../../constant'
 import CircularProgress from '@mui/material/CircularProgress'
 import { getVideosAPI } from '../../api/video'
-import { VideoContext, AppContext } from '../../App'
+import { getTopicsAPI } from '../../api/topic'
+import { AppContext, TopicContext, VideoContext } from '../../App'
 import VideoList from './VideoList'
 import SetupVideo from './SetupVideo';
-import Topic from './Topic'
+import TopicList from './TopicList'
 
 
 function Home() {
@@ -25,10 +26,23 @@ function Home() {
     const [errorMessage, setErrorMessage] = useState('')
     const [value, setValue] = useState('0');
     const [filter, setFilter] = useState(videoCategory[0])
+    const { setTopicData } = useContext(TopicContext)
     const { setVideoData } = useContext(VideoContext)
     const { app, setApp } = useContext(AppContext)
     const [selectedId, setSelectedId] = useState("-1")
 
+    const getTopics = async () => {
+        setIsLoading(true)
+        setErrorMessage('')
+        const { okStatus, data } = await getTopicsAPI()
+        if (okStatus) {
+            setTopicData(data)
+        }
+        else {
+            setErrorMessage(data)
+        }
+        setIsLoading(false)
+    }
 
 
     const getVideos = async () => {
@@ -44,7 +58,9 @@ function Home() {
         setIsLoading(false)
     }
 
+
     useEffect(() => {
+        getTopics()
         getVideos()
     }, [])
 
@@ -70,7 +86,7 @@ function Home() {
                                 height: 600,
                                 overflowY: "scroll",
                             }}>
-                                <Topic data={data} setSelectedId={setSelectedId} />
+                                <TopicList data={data} setSelectedId={setSelectedId} />
                             </Box>
                         }
                         {(selectedId === "0") &&

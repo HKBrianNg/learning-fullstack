@@ -6,7 +6,7 @@ import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline'
 import { AppContext } from '../../App';
 
 
-function Topic({ data, setSelectedId }) {
+function TopicList({ data, setSelectedId }) {
     const [expanded, setExpanded] = useState(false)
     const { app } = useContext(AppContext)
 
@@ -63,4 +63,4 @@ function Topic({ data, setSelectedId }) {
     )
 }
 
-export default Topic
+export default TopicList

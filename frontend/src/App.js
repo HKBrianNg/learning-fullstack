@@ -11,10 +11,12 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 
 
 export const AppContext = createContext(null)
+export const TopicContext = createContext(null)
 export const VideoContext = createContext(null)
 
 function App() {
   const [app, setApp] = useState({ email: '', token: '', theme: 'light', currentTab: 0 })
+  const [topicData, setTopicData] = useState([])
   const [videoData, setVideoData] = useState([])
 
 
@@ -29,16 +31,18 @@ function App() {
       <div className="App">
         <AppContext.Provider value={{ app, setApp }}>
           <VideoContext.Provider value={{ videoData, setVideoData }}>
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/home" element={<Home />} />
-              <Route path="/video/:id" element={<VideoDetails />} />
-              <Route path="/auth/login" element={<Login />} />
-              <Route path="/auth/signup" element={<Signup />} />
-              <Route path="/auth/logout" element={<Logout />} />
-              <Route path="/config/user" element={<User />} />
-              <Route path="/config/topic" element={<Topic />} />
-            </Routes>
+            <TopicContext.Provider value={{ topicData, setTopicData }}>
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/home" element={<Home />} />
+                <Route path="/video/:id" element={<VideoDetails />} />
+                <Route path="/auth/login" element={<Login />} />
+                <Route path="/auth/signup" element={<Signup />} />
+                <Route path="/auth/logout" element={<Logout />} />
+                <Route path="/config/user" element={<User />} />
+                <Route path="/config/topic" element={<Topic />} />
+              </Routes>
+            </TopicContext.Provider>
           </VideoContext.Provider>
         </AppContext.Provider>
       </div>
