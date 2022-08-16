@@ -1,14 +1,32 @@
-import React from 'react'
-import Navbar from '../../component/header/Navbar'
+import * as React from 'react';
+import { DataGrid } from '@mui/x-data-grid';
+import { useDemoData } from '@mui/x-data-grid-generator';
 
+export default function User() {
+    const { data } = useDemoData({
+        dataSet: 'Commodity',
+        rowLength: 10,
+        maxColumns: 6,
+    });
+    const [selectedRows, setSelectedRows] = React.useState([]);
 
-function User() {
     return (
-        <>
-            <Navbar />
-            <div>User</div>
-        </>
-    )
-}
+        <div style={{ height: 400, width: '100%' }}>
+            <DataGrid
+                checkboxSelection
+                onSelectionModelChange={(ids) => {
+                    const selectedIDs = new Set(ids);
+                    const selectedRows = data.rows.filter((row) =>
+                        selectedIDs.has(row.id),
+                    );
 
-export default User
+                    setSelectedRows(selectedRows);
+                }}
+                {...data}
+            />
+            <pre style={{ fontSize: 10 }}>
+                {JSON.stringify(selectedRows, null, 4)}
+            </pre>
+        </div>
+    );
+}

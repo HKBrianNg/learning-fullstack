@@ -5,7 +5,7 @@ import Signup from './page/auth/Signup'
 import Logout from './page/auth/Logout'
 import VideoDetails from './page/video/VideoDetails'
 import Home from './page/home/Home'
-import ConfigTopic from './page/config/ConfigTopic'
+import TopicList from './page/config/TopicList'
 import User from './page/config/User'
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 
@@ -68,7 +68,7 @@ function App() {
                 <Route path="/auth/signup" element={<Signup />} />
                 <Route path="/auth/logout" element={<Logout />} />
                 <Route path="/config/user" element={<User />} />
-                <Route path="/config/topic" element={<ConfigTopic />} />
+                <Route path="/config/topic" element={<TopicList />} />
               </Routes>
             </TopicContext.Provider>
           </VideoContext.Provider>
