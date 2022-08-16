@@ -2,10 +2,8 @@ import { useEffect, useState } from 'react'
 import { Typography, Box, TextField, Stack, Paper, Button, FormControl, InputLabel, Select, MenuItem } from '@mui/material'
 import CircularProgress from '@mui/material/CircularProgress'
 import { createVideoAPI, getVideoAPI, updateVideoAPI } from '../../api/video'
+import { SysMsg } from '../../constant'
 
-const sysMsg = [
-    "Please decode video Id first.",
-]
 
 const initialVideo = {
     id: "",
@@ -69,7 +67,7 @@ function SetupVideo({ selectedId, setSelectedId }) {
     const handleSubmit = async (e) => {
         e.preventDefault()
         if (!video.videoId) {
-            setErrorMessage(sysMsg[0])
+            setErrorMessage(SysMsg[1])
         } else {
             setIsLoading(true)
             if (selectedId === '0') {

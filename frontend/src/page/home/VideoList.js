@@ -8,18 +8,21 @@ import { AppContext, VideoContext } from '../../App'
 import { deleteVideoAPI } from '../../api/video'
 import CircularProgress from '@mui/material/CircularProgress'
 
-function VideoList({ filter, setSelectedId }) {
+function VideoList({ setSelectedId }) {
     const { app } = useContext(AppContext)
     const { videoData, setVideoData } = useContext(VideoContext)
     const navigate = useNavigate()
     const [errorMessage, setErrorMessage] = useState('')
     const [isLoading, setIsLoading] = useState(false)
 
-
-    let currentData = videoData;
-    if (filter) {
+    let currentData
+    if (app.subCategory === 'ALL') {
         currentData = videoData
-            .filter((item) => item.subCategory === filter.subCategory && item.category === filter.category)
+            .filter((item) => item.category === app.category)
+            .sort((a, b) => { return a.id - b.id })
+    } else {
+        currentData = videoData
+            .filter((item) => item.subCategory === app.subCategory && item.category === app.category)
             .sort((a, b) => { return a.id - b.id })
     }
 

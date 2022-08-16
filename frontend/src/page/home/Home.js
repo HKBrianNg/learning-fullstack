@@ -1,23 +1,20 @@
 import { useState, useEffect, useContext } from 'react';
-import { Box, Tab, Typography } from '@mui/material';
-import { TabContext, TabList, TabPanel } from '@mui/lab';
-import Navbar from '../../component/header/Navbar'
-import { data as React } from '../../data/ReactData'
+import { Box, Typography } from '@mui/material';
 import CircularProgress from '@mui/material/CircularProgress'
 import { getVideosAPI } from '../../api/video'
 import { getTopicsAPI } from '../../api/topic'
 import { AppContext, TopicContext, VideoContext } from '../../App'
-import TabTemplate from './TabTemplate'
+import ShowTab from './ShowTab'
+import Navbar from '../../component/header/Navbar'
+import { SysMsg } from '../../constant'
 
 
 function Home() {
-    const [filter, setFilter] = useState({ category: 'IT', subCategory: 'AppService' })
-    const [value, setValue] = useState('AppService')
     const [isLoading, setIsLoading] = useState(false)
     const [errorMessage, setErrorMessage] = useState('')
+    const { app } = useContext(AppContext)
     const { topicData, setTopicData } = useContext(TopicContext)
     const { setVideoData } = useContext(VideoContext)
-    const { app, setApp } = useContext(AppContext)
     const [isConfigReady, setIsConfigReady] = useState(false)
 
 
@@ -26,7 +23,11 @@ function Home() {
         setErrorMessage('')
         const { okStatus, data } = await getTopicsAPI()
         if (okStatus) {
-            setTopicData(data)
+            if (data.length > 0) {
+                setTopicData(data)
+            } else {
+                setErrorMessage(SysMsg[0])
+            }
         }
         else {
             setErrorMessage(data)
@@ -47,43 +48,25 @@ function Home() {
         setIsLoading(false)
     }
 
-    const getConfigData = async () => {
+    const getConfigData = async (callback) => {
         await getTopics()
         await getVideos()
+        callback()
+    }
+
+    const setupConfig = () => {
         setIsConfigReady(true)
+        console.log("System is ready.")
     }
 
     useEffect(() => {
-        getConfigData()
+        console.log("home useffect")
+        getConfigData(function () {
+            setupConfig()
+        })
     }, [])
 
-    const handleChange = (event, newValue) => {
-        setValue(newValue);
-        setFilter({ ...filter, subCategory: newValue })
-        setApp({ ...app, currentTab: value })
-    };
-
-    const ShowTab = () => {
-        const data = topicData
-            .filter((item) => item.category === filter.category)
-            .sort((a, b) => { return a.id - b.id })
-
-        return (
-            <TabContext value={value}>
-                <Box sx={{ borderBottom: 1, borderColor: 'divider', }}>
-                    <TabList onChange={handleChange} variant="scrollable" scrollButtons="auto" allowScrollButtonsMobile value={value}>
-                        {data.map((item) => (<Tab key={item._id} label={item.subCategory} value={item.subCategory} />))}
-                    </TabList>
-                </Box>
-                {data.map((item) => (
-                    <TabPanel key={item._id} value={item.subCategory}>
-                        <TabTemplate data={item} filter={filter} />
-                    </TabPanel>
-                ))}
-            </TabContext>
-        )
-    }
-
+    console.log("The app & topic data:", app, topicData)
     return (
         <>
             <Navbar />

@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom'
 import { AppContext } from '../../App'
 
 function Login() {
-    const { setApp } = useContext(AppContext)
+    const { app, setApp } = useContext(AppContext)
     const [user, setUser] = useState({ email: '', password: '' })
     const [isLoading, setIsLoading] = useState(null)
     const [errmsg, setErrmsg] = useState(null)
@@ -21,7 +21,7 @@ function Login() {
         setIsLoading(false)
         if (okStatus) {
             localStorage.setItem('user', JSON.stringify(data))
-            setApp({ email: data.email, token: data.token })
+            setApp({ ...app, email: data.email, token: data.token })
             navigate('/home', { replace: true })
         } else {
             setErrmsg(data)

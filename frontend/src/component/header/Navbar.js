@@ -6,6 +6,7 @@ import SearchVideo from './SearchVideo.js'
 import { Link } from 'react-router-dom'
 import { AppContext } from '../../App'
 import { deepOrange } from '@mui/material/colors'
+import SelectCategory from './SelectCategory.js'
 
 const DisplayLogo = () => {
     return (
@@ -96,6 +97,9 @@ function Navbar() {
                     </Box>
                     <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' }, }}>
                         <DisplayLogo />
+                    </Box>
+                    <Box sx={{ flexGrow: 1, margin: 1, display: 'flex' }}>
+                        <SelectCategory />
                     </Box>
                     <Box sx={{ flexGrow: 2, margin: 1, display: { xs: 'none', md: 'flex' } }}>
                         <SearchVideo />

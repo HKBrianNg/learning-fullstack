@@ -5,7 +5,7 @@ import Signup from './page/auth/Signup'
 import Logout from './page/auth/Logout'
 import VideoDetails from './page/video/VideoDetails'
 import Home from './page/home/Home'
-import Topic from './page/config/Topic'
+import ConfigTopic from './page/config/ConfigTopic'
 import User from './page/config/User'
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 
@@ -14,8 +14,12 @@ export const AppContext = createContext(null)
 export const TopicContext = createContext(null)
 export const VideoContext = createContext(null)
 
+const initialApp = {
+  email: '', token: '', theme: 'light', category: 'IT', subCategory: 'ALL'
+}
+
 function App() {
-  const [app, setApp] = useState({ email: '', token: '', theme: 'light', currentTab: 0 })
+  const [app, setApp] = useState(initialApp)
   const [topicData, setTopicData] = useState([])
   const [videoData, setVideoData] = useState([])
 
@@ -23,6 +27,30 @@ function App() {
   const theme = createTheme({
     palette: {
       mode: app.theme,
+    },
+    overrides: {
+      MuiFilledInput: {
+        root: {
+          backgroundColor: 'rgba(255,255,255,0.8)',
+          '&:hover': {
+            backgroundColor: 'rgba(255,255,255,1)'
+          },
+          '&.Mui-focused': {
+            backgroundColor: 'rgba(255,255,255,1)'
+          }
+        }
+      }
+    },
+    components: {
+      MuiInputBase: {
+        styleOverrides: {
+          root: {
+            "&:before": {
+              borderBottom: "1px solid yellow !imporatnt",
+            }
+          },
+        },
+      },
     },
   });
 
@@ -40,7 +68,7 @@ function App() {
                 <Route path="/auth/signup" element={<Signup />} />
                 <Route path="/auth/logout" element={<Logout />} />
                 <Route path="/config/user" element={<User />} />
-                <Route path="/config/topic" element={<Topic />} />
+                <Route path="/config/topic" element={<ConfigTopic />} />
               </Routes>
             </TopicContext.Provider>
           </VideoContext.Provider>

@@ -30,7 +30,7 @@ function SearchVideo() {
 
     const openVideo = () => {
 
-        videoId && navigate(`/home/video/${videoId}`, { replace: true });
+        videoId && navigate(`/video/${videoId}`, { replace: true });
     }
 
     return (
