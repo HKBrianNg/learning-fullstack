@@ -46,7 +46,6 @@ function Navbar() {
             <>
 
                 <Menu anchorEl={anchorElConfig} open={openConfig} onClose={handleConfigClose}
-                    getContentAnchorEl={null}
                     anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
                     transformOrigin={{ vertical: 'top', horizontal: 'left' }}
                 >

@@ -62,7 +62,7 @@ function VideoList({ setSelectedId }) {
                             Published at: {item.publishedAt}
                         </Typography>
                         <CardActions>
-                            {app.email &&
+                            {(app.email && app.subCategory !== 'ALL') &&
                                 <div>
                                     <Tooltip title="Edit Video">
                                         <IconButton onClick={() => handlleEditClick(item._id)}><EditIcon /></IconButton>
