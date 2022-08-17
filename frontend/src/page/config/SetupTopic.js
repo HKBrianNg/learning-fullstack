@@ -1,7 +1,9 @@
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { Typography, Box, TextField, Stack, Paper, Button } from '@mui/material'
 import CircularProgress from '@mui/material/CircularProgress'
 import { createTopicAPI, getTopicAPI, updateTopicAPI } from '../../api/topic'
+import { AppContext } from '../../App'
+
 
 const sysMsg = [
     "",
@@ -19,6 +21,7 @@ const initialTopic = {
 
 
 function SetupTopic({ selectedId, setSelectedId }) {
+    // const [app, setApp] = useContext(AppContext)
     const [topic, setTopic] = useState(initialTopic)
     const [errorMessage, setErrorMessage] = useState('')
     const [isLoading, setIsLoading] = useState(false)
@@ -28,13 +31,15 @@ function SetupTopic({ selectedId, setSelectedId }) {
         if (selectedId !== '0') {
             getTopic()
         }
-    }, [])
+    }, [selectedId])
 
     const handleChange = (e) => {
         setTopic({ ...topic, [e.target.name]: e.target.value })
     }
 
     const getTopic = async () => {
+        setIsLoading(true)
+        setErrorMessage('')
         const { okStatus, data } = await getTopicAPI(selectedId)
         if (okStatus) {
             setTopic(data)
@@ -42,26 +47,36 @@ function SetupTopic({ selectedId, setSelectedId }) {
         else {
             setErrorMessage(data)
         }
+        setIsLoading(false)
     }
 
     const createTopic = async () => {
+        setIsLoading(true)
+        setErrorMessage('')
         const { okStatus, data } = await createTopicAPI(topic)
         if (okStatus) {
             handleCancel()
+            // setApp({ ...app, dirtyFlag: true })
         }
         else {
             setErrorMessage(data)
         }
+        setIsLoading(false)
     }
 
     const updateTopic = async () => {
+        setIsLoading(true)
+        setErrorMessage('')
         const { okStatus, data } = await updateTopicAPI(topic, selectedId)
         if (okStatus) {
             handleCancel()
+            // setApp({ ...app, dirtyFlag: true })
         }
         else {
             setErrorMessage(data)
         }
+        setIsLoading(false)
+
     }
 
     const handleSubmit = async (e) => {
@@ -77,6 +92,7 @@ function SetupTopic({ selectedId, setSelectedId }) {
 
     const handleCancel = () => {
         setTopic(initialTopic)
+        setSelectedId('0')
         setErrorMessage('')
     }
 
