@@ -13,7 +13,7 @@ const initialTopic = {
     contentUrl: ""
 }
 
-function SetupTopic({ selectedId, setSelectedId }) {
+function SetupTopic({ selectedId, setSelectedId, setDirtyFlag }) {
     const [topic, setTopic] = useState(initialTopic)
     const [errorMessage, setErrorMessage] = useState('')
     const [isLoading, setIsLoading] = useState(false)
@@ -48,6 +48,7 @@ function SetupTopic({ selectedId, setSelectedId }) {
         const { okStatus, data } = await createTopicAPI(topic)
         if (okStatus) {
             handleCancel()
+            setDirtyFlag(true)
         }
         else {
             setErrorMessage(data)
@@ -61,6 +62,7 @@ function SetupTopic({ selectedId, setSelectedId }) {
         const { okStatus, data } = await updateTopicAPI(topic, selectedId)
         if (okStatus) {
             handleCancel()
+            setDirtyFlag(true)
         }
         else {
             setErrorMessage(data)

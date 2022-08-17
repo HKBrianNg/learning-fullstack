@@ -17,6 +17,7 @@ function TopicList() {
     const [isLoading, setIsLoading] = useState(false)
     const [errorMessage, setErrorMessage] = useState('')
     const [selectedId, setSelectedId] = useState('0')
+    const [dirtyFlag, setDirtyFlag] = useState(false)
 
 
     const getTopics = async () => {
@@ -55,14 +56,17 @@ function TopicList() {
     }
 
     const handleDeleteClick = (id) => {
-        setSelectedId(id)
+        deleteTopic(id)
     }
 
     useEffect(() => {
         console.log("TopicList useffect")
-        getTopics()
+        if (dirtyFlag) {
+            setDirtyFlag(false)
+            getTopics()
+        }
 
-    }, [])
+    }, [dirtyFlag])
 
     const data = topicData.filter((item) => item.category === app.category).sort((a, b) => { return a.id - b.id })
 
@@ -146,7 +150,7 @@ function TopicList() {
                         />
                     </Box>
                     <Box sx={{ flex: 1 }}>
-                        <SetupTopic selectedId={selectedId} setSelectedId={setSelectedId} />
+                        <SetupTopic selectedId={selectedId} setSelectedId={setSelectedId} setDirtyFlag={setDirtyFlag} />
                     </Box>
                 </Stack>
             </Container>
