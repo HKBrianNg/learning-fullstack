@@ -15,7 +15,7 @@ export const getTopics = async (req, res) => {
     }
 }
 
-// get a video
+// get a topic
 export const getTopic = async (req, res) => {
     try {
         const { id } = req.params

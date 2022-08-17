@@ -1,6 +1,7 @@
 import jwt from 'jsonwebtoken'
 import User from '../models/userModel.js'
 import { sysMsg } from '../constant.js'
+import mongoose from "mongoose"
 
 const createToken = (_id) => {
     return jwt.sign({ _id }, process.env.SECRET, { expiresIn: '3d' })
@@ -45,4 +46,62 @@ export const getUsers = async (req, res) => {
         res.status(400).json({ error: error.message })
     }
 
+}
+
+export const getUser = async (req, res) => {
+    try {
+        const { id } = req.params
+        if (!mongoose.Types.ObjectId.isValid(id)) {
+            return res.status(400).json(sysMsg[2])
+        }
+
+        const user = await User.findById(id)
+        if (!user) {
+            return res.status(404).json(sysMsg[4])
+        }
+        res.status(200).json(user)
+    } catch (error) {
+        res.status(400).json({ error: error.message })
+    }
+}
+
+// delete a user
+export const deleteUser = async (req, res) => {
+    try {
+        const { id } = req.params
+        if (!mongoose.Types.ObjectId.isValid(id)) {
+            return res.status(400).json(sysMsg[2])
+        }
+
+        const user = await User.findOneAndDelete({ _id: id })
+
+        if (!user) {
+            return res.status(404).json(sysMsg[4])
+        }
+        res.status(200).json(user)
+    } catch (error) {
+        res.status(400).json({ error: error.message })
+    }
+}
+
+// update a user
+export const updateUser = async (req, res) => {
+    try {
+        const { id } = req.params
+
+        if (!mongoose.Types.ObjectId.isValid(id)) {
+            return res.status(404).json(sysMsg[2])
+        }
+
+        const user = await User.findOneAndUpdate({ _id: id }, {
+            ...req.body
+        })
+
+        if (!user) {
+            return res.status(404).json(sysMsg[4])
+        }
+        res.status(200).json(user)
+    } catch (error) {
+        res.status(400).json({ error: error.message })
+    }
 }
