@@ -22,8 +22,8 @@ export const loginUser = async (req, res) => {
 
 export const signupUser = async (req, res) => {
     try {
-        const { name, email, password } = req.body
-        const user = await User.signup(name, email, password)
+        const { id, name, email, password } = req.body
+        const user = await User.signup(id, name, email, password)
         const token = createToken(user._id)
         console.log("signupUser(200):", { email, token })
         res.status(200).json({ email, token })

@@ -6,6 +6,10 @@ import { sysMsg } from '../constant.js';
 const Schema = mongoose.Schema
 
 const userSchema = new Schema({
+    id: {
+        type: String,
+        required: true
+    },
     name: {
         type: String,
         required: true
@@ -44,10 +48,10 @@ userSchema.statics.login = async function (email, password) {
 }
 
 // static signup method
-userSchema.statics.signup = async function (name, email, password) {
+userSchema.statics.signup = async function (id, name, email, password) {
 
     // validation
-    if (!name || !email || !password) {
+    if (!id || !name || !email || !password) {
         throw Error(sysMsg[7])
     }
     if (!validator.isEmail(email)) {
@@ -63,7 +67,7 @@ userSchema.statics.signup = async function (name, email, password) {
     }
     const salt = await bcrypt.genSalt(10)
     const hash = await bcrypt.hash(password, salt)
-    const user = await this.create({ name, email, password: hash })
+    const user = await this.create({ id, name, email, password: hash })
     return user
 }
 

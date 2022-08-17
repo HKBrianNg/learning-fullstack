@@ -2,33 +2,35 @@ import { useState, useContext, useEffect } from 'react';
 import { DataGrid } from '@mui/x-data-grid';
 import { Container, Box, Tooltip, IconButton, Stack, Typography } from '@mui/material'
 import Navbar from '../../component/header/Navbar'
-import { AppContext, TopicContext } from '../../App'
+import { AppContext, TopicContext, UserContext } from '../../App'
 import DeleteIcon from '@mui/icons-material/Delete'
 import EditIcon from '@mui/icons-material/Edit'
 import SetupTopic from './SetupTopic';
 import CircularProgress from '@mui/material/CircularProgress'
 import { SysMsg } from '../../constant'
-import { getTopicsAPI, deleteTopicAPI } from '../../api/topic'
+import { deleteTopicAPI } from '../../api/topic'
+import { getUsersAPI } from '../../api/user'
 
 
 function UserList() {
     const { app } = useContext(AppContext)
     const { topicData, setTopicData } = useContext(TopicContext)
+    const { userData, setUserData } = useContext(UserContext)
     const [isLoading, setIsLoading] = useState(false)
     const [errorMessage, setErrorMessage] = useState('')
     const [selectedId, setSelectedId] = useState('0')
-    const [dirtyFlag, setDirtyFlag] = useState(false)
+    const [dirtyFlag, setDirtyFlag] = useState(true)
 
 
-    const getTopics = async () => {
+    const getUsers = async () => {
         setIsLoading(true)
         setErrorMessage('')
-        const { okStatus, data } = await getTopicsAPI()
+        const { okStatus, data } = await getUsersAPI()
         if (okStatus) {
             if (data.length > 0) {
-                setTopicData(data)
+                setUserData(data)
             } else {
-                setErrorMessage(SysMsg[0])
+                setErrorMessage(SysMsg[2])
             }
         }
         else {
@@ -60,15 +62,14 @@ function UserList() {
     }
 
     useEffect(() => {
-        console.log("TopicList useffect")
+        console.log("UserList useffect")
         if (dirtyFlag) {
             setDirtyFlag(false)
-            getTopics()
+            getUsers()
         }
 
     }, [dirtyFlag])
 
-    const data = topicData.filter((item) => item.category === app.category).sort((a, b) => { return a.id - b.id })
 
 
     const columns = [
@@ -108,8 +109,8 @@ function UserList() {
         }
     ];
 
-
-    console.log("last clicked id", selectedId)
+    const data = userData.sort((a, b) => { return a.name - b.name })
+    console.log("last clicked id & user data:", selectedId, data)
 
     return (
         <>
