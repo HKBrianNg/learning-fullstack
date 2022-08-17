@@ -16,7 +16,7 @@ export const VideoContext = createContext(null)
 export const UserContext = createContext(null)
 
 const initialApp = {
-  email: '', token: '', theme: 'light', category: 'IT', subCategory: 'ALL', dirtyFlag: false
+  email: '', token: '', theme: 'light', category: 'IT', subCategory: 'ALL'
 }
 
 function App() {
