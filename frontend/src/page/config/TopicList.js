@@ -8,7 +8,7 @@ import EditIcon from '@mui/icons-material/Edit'
 import SetupTopic from './SetupTopic';
 import CircularProgress from '@mui/material/CircularProgress'
 import { SysMsg } from '../../constant'
-import { getTopicsAPI } from '../../api/topic'
+import { getTopicsAPI, deleteTopicAPI } from '../../api/topic'
 
 
 function TopicList() {
@@ -36,6 +36,20 @@ function TopicList() {
         setIsLoading(false)
     }
 
+    const deleteTopic = async (id) => {
+        const { okStatus, data } = await deleteTopicAPI(id)
+        setIsLoading(true)
+        setErrorMessage('')
+        if (okStatus) {
+            const newTopicData = topicData.filter((item) => (item._id !== id))
+            setTopicData(newTopicData)
+            setErrorMessage('')
+        } else {
+            setErrorMessage(data)
+        }
+        setIsLoading(false)
+    }
+
     const handlleEditClick = (id) => {
         setSelectedId(id)
     }
@@ -43,6 +57,12 @@ function TopicList() {
     const handleDeleteClick = (id) => {
         setSelectedId(id)
     }
+
+    useEffect(() => {
+        console.log("TopicList useffect")
+        getTopics()
+
+    }, [])
 
     const data = topicData.filter((item) => item.category === app.category).sort((a, b) => { return a.id - b.id })
 

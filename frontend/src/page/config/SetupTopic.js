@@ -1,13 +1,7 @@
-import { useContext, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Typography, Box, TextField, Stack, Paper, Button } from '@mui/material'
 import CircularProgress from '@mui/material/CircularProgress'
 import { createTopicAPI, getTopicAPI, updateTopicAPI } from '../../api/topic'
-import { AppContext } from '../../App'
-
-
-const sysMsg = [
-    "",
-]
 
 const initialTopic = {
     id: "",
@@ -19,9 +13,7 @@ const initialTopic = {
     contentUrl: ""
 }
 
-
 function SetupTopic({ selectedId, setSelectedId }) {
-    // const [app, setApp] = useContext(AppContext)
     const [topic, setTopic] = useState(initialTopic)
     const [errorMessage, setErrorMessage] = useState('')
     const [isLoading, setIsLoading] = useState(false)
@@ -56,7 +48,6 @@ function SetupTopic({ selectedId, setSelectedId }) {
         const { okStatus, data } = await createTopicAPI(topic)
         if (okStatus) {
             handleCancel()
-            // setApp({ ...app, dirtyFlag: true })
         }
         else {
             setErrorMessage(data)
@@ -70,7 +61,6 @@ function SetupTopic({ selectedId, setSelectedId }) {
         const { okStatus, data } = await updateTopicAPI(topic, selectedId)
         if (okStatus) {
             handleCancel()
-            // setApp({ ...app, dirtyFlag: true })
         }
         else {
             setErrorMessage(data)
