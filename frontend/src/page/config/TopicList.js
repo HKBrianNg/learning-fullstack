@@ -12,7 +12,7 @@ import { getTopicsAPI, deleteTopicAPI } from '../../api/topic'
 
 
 function TopicList() {
-    const { app, setApp } = useContext(AppContext)
+    const { app } = useContext(AppContext)
     const { topicData, setTopicData } = useContext(TopicContext)
     const [isLoading, setIsLoading] = useState(false)
     const [errorMessage, setErrorMessage] = useState('')
