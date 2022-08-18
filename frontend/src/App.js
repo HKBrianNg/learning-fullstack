@@ -1,6 +1,7 @@
 import { useState, createContext } from 'react'
 import { Routes, Route } from "react-router-dom"
-import Login from './page/auth/Login'
+// 
+import Login from './component/auth/Login'
 import Signup from './page/auth/Signup'
 import Logout from './page/auth/Logout'
 import VideoDetails from './page/video/VideoDetails'
