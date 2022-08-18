@@ -7,6 +7,7 @@ import { Container, Box, Paper, Typography, Stack, TextField, Button, IconButton
 import CircularProgress from '@mui/material/CircularProgress'
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import GoogleIcon from '@mui/icons-material/Google';
 
 const initialUser = {
     email: "",
@@ -20,10 +21,6 @@ function Login() {
     const [isLoading, setIsLoading] = useState(false)
     // const { logIn, googleSignIn } = useUserAuth();
     const navigate = useNavigate()
-
-    // const handleChange = (e) => {
-    //     setUser({ ...user, [e.target.name]: e.target.value })
-    // }
 
     const handleCancel = () => {
         setUser(initialUser)
@@ -91,12 +88,17 @@ function Login() {
                                     label="Password"
                                 />
                             </FormControl>
+                            <Stack direction='row' spacing={2} m={2}>
+                                <Button variant="contained" type='Submit' disabled={isLoading} >Submit</Button>
+                                <Button variant="contained" disabled={isLoading} onClick={handleCancel}>Cancel</Button>
+                                {isLoading && <Box sx={{ display: 'flex' }}><CircularProgress /></Box>}
+                            </Stack>
+                            <Button variant="contained" startIcon={<GoogleIcon />}>
+                                Sign in with Google
+                            </Button>
                         </Stack>
-                        <Stack direction='row' spacing={2} m={2}>
-                            <Button variant="contained" type='Submit' disabled={isLoading} >Submit</Button>
-                            <Button variant="contained" disabled={isLoading} onClick={handleCancel}>Cancel</Button>
-                            {isLoading && <Box sx={{ display: 'flex' }}><CircularProgress /></Box>}
-                        </Stack>
+                        <Typography variant="subtitle1" component="subtitle1" align='center' m={1} >Don't have an account?</Typography>
+                        <Link to='/auth/signup'>Sign up</Link>
                         {errorMessage && <Typography variant="h6" component="h6" align='left' color='red' m={1} >{errorMessage}</Typography>}
                     </Paper>
                 </Box>
