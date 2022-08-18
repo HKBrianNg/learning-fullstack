@@ -60,13 +60,13 @@ function Home() {
     }
 
     useEffect(() => {
-        console.log("home useffect")
+        // console.log("home useffect")
         getConfigData(function () {
             setupConfig()
         })
     }, [])
 
-    console.log("The app & topic data:", app, topicData)
+    // console.log("The app & topic data:", app, topicData)
     return (
         <>
             <Navbar />

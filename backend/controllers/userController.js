@@ -33,6 +33,18 @@ export const signupUser = async (req, res) => {
     }
 }
 
+export const createUser = async (req, res) => {
+    try {
+        const { id, name, email, password } = req.body
+        const newuser = await User.signup(id, name, email, password)
+        console.log("createUser(200):", newuser)
+        res.status(200).json(newuser)
+    } catch (error) {
+        console.log("signupUser(400):", { error: error.message })
+        res.status(400).json({ error: error.message })
+    }
+}
+
 export const getUsers = async (req, res) => {
     try {
         const users = await User.find({})

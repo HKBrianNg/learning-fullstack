@@ -17,7 +17,7 @@ function ShowTab() {
         .filter((item) => item.category === app.category)
         .sort((a, b) => { return a.id - b.id })
 
-    console.log("ShowTab():", app.subCategory)
+    // console.log("ShowTab():", app.subCategory)
     return (
         <TabContext value={app.subCategory}>
             <Box sx={{ borderBottom: 1, borderColor: 'divider', }}>

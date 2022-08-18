@@ -60,7 +60,7 @@ function TopicList() {
     }
 
     useEffect(() => {
-        console.log("TopicList useffect")
+        // console.log("TopicList useffect")
         if (dirtyFlag) {
             setDirtyFlag(false)
             getTopics()
@@ -109,7 +109,7 @@ function TopicList() {
     ];
 
 
-    console.log("last clicked id", selectedId)
+    // console.log("last clicked id", selectedId)
 
     return (
         <>

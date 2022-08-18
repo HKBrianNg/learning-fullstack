@@ -8,7 +8,7 @@ export const createVideoAPI = async (video) => {
         // console.log("createVideoAPI() success:", response)
         return { okStatus: true, data: response.data }
     } catch (error) {
-        console.log("createVideoAPI() error:", error.response.data.error)
+        // console.log("createVideoAPI() error:", error.response.data.error)
         return { okStatus: false, data: error.response.data.error }
     }
 }
@@ -19,7 +19,7 @@ export const updateVideoAPI = async (video, id) => {
         // console.log("updateVideoAPI() success:", response)
         return { okStatus: true, data: response.data }
     } catch (error) {
-        console.log("updateVideoAPI() error:", error.response.data.error)
+        // console.log("updateVideoAPI() error:", error.response.data.error)
         return { okStatus: false, data: error.response.data.error }
     }
 }
@@ -30,7 +30,7 @@ export const getVideoAPI = async (id) => {
         // console.log("getVideoAPI() success:", response)
         return { okStatus: true, data: response.data }
     } catch (error) {
-        console.log("getVideoAPI() error:", error.response.data.error)
+        // console.log("getVideoAPI() error:", error.response.data.error)
         return { okStatus: false, data: error.response.data.error }
     }
 }
@@ -41,7 +41,7 @@ export const getVideosAPI = async () => {
         // console.log("getVideosAPI() success:", response)
         return { okStatus: true, data: response.data }
     } catch (error) {
-        console.log("getVideosAPI() error:", error.response.data.error)
+        // console.log("getVideosAPI() error:", error.response.data.error)
         return { okStatus: false, data: error.response.data.error }
     }
 }
@@ -52,7 +52,7 @@ export const deleteVideoAPI = async (id) => {
         // console.log("deleteVideoAPI() success:", response)
         return { okStatus: true, data: response.data }
     } catch (error) {
-        console.log("deleteVideoAPI() error:", error.response.data.error)
+        // console.log("deleteVideoAPI() error:", error.response.data.error)
         return { okStatus: false, data: error.response.data.error }
     }
 }
