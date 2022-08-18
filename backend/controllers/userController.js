@@ -12,10 +12,10 @@ export const loginUser = async (req, res) => {
         const { email, password } = req.body
         const user = await User.login(email, password)
         const token = createToken(user._id)
-        console.log("loginUser(200):", { email, token })
+        // console.log("loginUser(200):", { email, token })
         res.status(200).json({ email, token })
     } catch (error) {
-        console.log("loginUser(400):", { error: error.message })
+        // console.log("loginUser(400):", { error: error.message })
         res.status(400).json({ error: error.message })
     }
 }
@@ -25,10 +25,10 @@ export const signupUser = async (req, res) => {
         const { id, name, email, password } = req.body
         const user = await User.signup(id, name, email, password)
         const token = createToken(user._id)
-        console.log("signupUser(200):", { email, token })
+        // console.log("signupUser(200):", { email, token })
         res.status(200).json({ email, token })
     } catch (error) {
-        console.log("signupUser(400):", { error: error.message })
+        // console.log("signupUser(400):", { error: error.message })
         res.status(400).json({ error: error.message })
     }
 }
@@ -37,10 +37,10 @@ export const createUser = async (req, res) => {
     try {
         const { id, name, email, password } = req.body
         const newuser = await User.signup(id, name, email, password)
-        console.log("createUser(200):", newuser)
+        // console.log("createUser(200):", newuser)
         res.status(200).json(newuser)
     } catch (error) {
-        console.log("signupUser(400):", { error: error.message })
+        // console.log("signupUser(400):", { error: error.message })
         res.status(400).json({ error: error.message })
     }
 }
@@ -51,10 +51,10 @@ export const getUsers = async (req, res) => {
         if (!users) {
             return res.status(400).json(sysMsg[4])
         }
-        console.log("getUser(200):", users)
+        // console.log("getUser(200):", users)
         res.status(200).json(users)
     } catch (error) {
-        console.log("getUser(400):", { error: error.message })
+        // console.log("getUser(400):", { error: error.message })
         res.status(400).json({ error: error.message })
     }
 
@@ -84,7 +84,6 @@ export const deleteUser = async (req, res) => {
         if (!mongoose.Types.ObjectId.isValid(id)) {
             return res.status(400).json(sysMsg[2])
         }
-
         const user = await User.findOneAndDelete({ _id: id })
 
         if (!user) {

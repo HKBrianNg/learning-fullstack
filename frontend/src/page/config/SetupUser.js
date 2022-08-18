@@ -20,7 +20,7 @@ function SetupUser({ selectedId, setSelectedId }) {
 
 
     useEffect(() => {
-        console.log('setupuser effect()', selectedId)
+        // console.log('setupuser effect()', selectedId)
         if (selectedId !== '0') {
             getUser()
         }

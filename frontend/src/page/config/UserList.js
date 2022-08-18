@@ -51,17 +51,17 @@ function UserList() {
     }
 
     const handlleEditClick = (id) => {
-        console.log("edit:", id)
+        // console.log("edit:", id)
         setSelectedId(id)
     }
 
     const handleDeleteClick = (id) => {
-        console.log("delete:", id)
+        // console.log("delete:", id)
         deleteUser(id)
     }
 
     useEffect(() => {
-        console.log("UserList useffect")
+        // console.log("UserList useffect")
         getUsers()
     }, [])
 
