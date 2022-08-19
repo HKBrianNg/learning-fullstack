@@ -9,6 +9,7 @@ import Home from './page/home/Home'
 import TopicList from './page/config/TopicList'
 import UserList from './page/config/UserList'
 import { ThemeProvider, createTheme } from '@mui/material/styles';
+import { AuthContextProvider } from './context/AuthContext'
 
 
 export const AppContext = createContext(null)
@@ -64,16 +65,18 @@ function App() {
           <VideoContext.Provider value={{ videoData, setVideoData }}>
             <TopicContext.Provider value={{ topicData, setTopicData }}>
               <UserContext.Provider value={{ userData, setUserData }} >
-                <Routes>
-                  <Route path="/" element={<Home />} />
-                  <Route path="/home" element={<Home />} />
-                  <Route path="/video/:id" element={<VideoDetails />} />
-                  <Route path="/auth/login" element={<Login />} />
-                  <Route path="/auth/signup" element={<Signup />} />
-                  <Route path="/auth/logout" element={<Logout />} />
-                  <Route path="/config/user" element={<UserList />} />
-                  <Route path="/config/topic" element={<TopicList />} />
-                </Routes>
+                <AuthContextProvider>
+                  <Routes>
+                    <Route path="/" element={<Home />} />
+                    <Route path="/home" element={<Home />} />
+                    <Route path="/video/:id" element={<VideoDetails />} />
+                    <Route path="/auth/login" element={<Login />} />
+                    <Route path="/auth/signup" element={<Signup />} />
+                    <Route path="/auth/logout" element={<Logout />} />
+                    <Route path="/config/user" element={<UserList />} />
+                    <Route path="/config/topic" element={<TopicList />} />
+                  </Routes>
+                </AuthContextProvider>
               </UserContext.Provider>
             </TopicContext.Provider>
           </VideoContext.Provider>

@@ -1,13 +1,12 @@
 import { useState } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 import GoogleButton from "react-google-button";
-import { useUserAuth } from '../../context/UserAuthContext'
+import { useAuth } from '../../context/AuthContext'
 import Navbar from '../header/Navbar'
 import { Container, Box, Paper, Typography, Stack, TextField, Button, IconButton, InputAdornment, FormControl, OutlinedInput, InputLabel } from '@mui/material'
 import CircularProgress from '@mui/material/CircularProgress'
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
-import GoogleIcon from '@mui/icons-material/Google';
 
 const initialUser = {
     name: "",
@@ -20,7 +19,7 @@ function Signup() {
     const [showPassword, setShowPassword] = useState(false)
     const [errorMessage, setErrorMessage] = useState("")
     const [isLoading, setIsLoading] = useState(false)
-    // const { logIn, googleSignIn } = useUserAuth();
+    const { signUp } = useAuth();
     const navigate = useNavigate()
 
     const handleCancel = () => {
@@ -38,13 +37,15 @@ function Signup() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setIsLoading(true)
         setErrorMessage("")
         try {
-            // await logIn(email, password);
-            navigate("/home")
+            await signUp(user.email, user.password);
+            navigate('/auth/login', { replace: true })
         } catch (err) {
             setErrorMessage(err.message)
         }
+        setIsLoading(false)
     }
 
     // const handleGoogleSignIn = async (e) => {
@@ -99,8 +100,10 @@ function Signup() {
                                 {isLoading && <Box sx={{ display: 'flex' }}><CircularProgress /></Box>}
                             </Stack>
                         </Stack>
-                        <Typography variant="subtitle1" component="subtitle1" align='center' m={1} >Already have an account?</Typography>
-                        <Link to='/auth/login'>Login</Link>
+                        <Stack direction='row' spacing={2} m={2}>
+                            <Typography variant="subtitle1" m={1} >Already have an account?</Typography>
+                            <Link to='/auth/login'>Login</Link>
+                        </Stack>
                         {errorMessage && <Typography variant="h6" component="h6" align='left' color='red' m={1} >{errorMessage}</Typography>}
                     </Paper>
                 </Box>

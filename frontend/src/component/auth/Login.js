@@ -1,13 +1,15 @@
-import { useState } from 'react'
+import { useState, useContext } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 import GoogleButton from "react-google-button";
-import { useUserAuth } from '../../context/UserAuthContext'
+import { useAuth } from '../../context/AuthContext'
 import Navbar from '../header/Navbar'
 import { Container, Box, Paper, Typography, Stack, TextField, Button, IconButton, InputAdornment, FormControl, OutlinedInput, InputLabel } from '@mui/material'
 import CircularProgress from '@mui/material/CircularProgress'
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import GoogleIcon from '@mui/icons-material/Google';
+import { AppContext } from '../../App'
+
 
 const initialUser = {
     email: "",
@@ -19,7 +21,8 @@ function Login() {
     const [showPassword, setShowPassword] = useState(false)
     const [errorMessage, setErrorMessage] = useState("")
     const [isLoading, setIsLoading] = useState(false)
-    // const { logIn, googleSignIn } = useUserAuth();
+    const { logIn, googleSignIn } = useAuth()
+    const { app, setApp } = useContext(AppContext)
     const navigate = useNavigate()
 
     const handleCancel = () => {
@@ -38,12 +41,15 @@ function Login() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         setErrorMessage("")
+        setIsLoading(true)
         try {
-            // await logIn(email, password);
-            navigate("/home")
+            await logIn(user.email, user.password)
+            setApp({ ...app, email: user.email })
+            navigate("/home", { replace: true })
         } catch (err) {
             setErrorMessage(err.message)
         }
+        setIsLoading(false)
     }
 
     // const handleGoogleSignIn = async (e) => {
@@ -100,8 +106,10 @@ function Login() {
                                 Sign in with Google
                             </Button>
                         </Stack>
-                        <Typography variant="subtitle1" component="subtitle1" align='center' m={1} >Don't have an account?</Typography>
-                        <Link to='/auth/signup'>Sign up</Link>
+                        <Stack direction='row' spacing={2} m={2} >
+                            <Typography variant="subtitle1" align='center' m={1} >Don't have an account?</Typography>
+                            <Link to='/auth/signup' align='center'>Sign up</Link>
+                        </Stack>
                         {errorMessage && <Typography variant="h6" component="h6" align='left' color='red' m={1} >{errorMessage}</Typography>}
                     </Paper>
                 </Box>
