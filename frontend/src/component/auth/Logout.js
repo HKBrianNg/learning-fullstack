@@ -1,14 +1,16 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useContext } from 'react'
 import { Container, Box, Paper, Typography, Button } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../../context/AuthContext'
 import CircularProgress from '@mui/material/CircularProgress'
+import { AppContext } from '../../App'
 
 
 function Logout() {
     const [errorMessage, setErrorMessage] = useState("")
     const [isLoading, setIsLoading] = useState(false)
     const { logOut } = useAuth()
+    const { app, setApp } = useContext(AppContext)
     const navigate = useNavigate()
 
 
@@ -21,6 +23,7 @@ function Logout() {
             setErrorMessage("")
             setIsLoading(true)
             await logOut()
+            setApp({ ...app, email: "" })
         } catch (err) {
             setErrorMessage(err.message)
         }

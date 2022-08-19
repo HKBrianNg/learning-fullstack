@@ -40,7 +40,7 @@ function Signup() {
         setIsLoading(true)
         setErrorMessage("")
         try {
-            await signUp(user.email, user.password);
+            await signUp(user.name, user.email, user.password);
             navigate('/auth/login', { replace: true })
         } catch (err) {
             setErrorMessage(err.message)

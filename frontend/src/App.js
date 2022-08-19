@@ -10,6 +10,7 @@ import UserList from './page/config/UserList'
 import { ThemeProvider, createTheme } from '@mui/material/styles'
 import { AuthContextProvider } from './context/AuthContext'
 import ProtectedRoute from './component/auth/ProtectedRoute'
+import Forgetpw from './component/auth/Forgetpw'
 
 
 export const AppContext = createContext(null)
@@ -73,6 +74,7 @@ function App() {
                     <Route path="/auth/login" element={<Login />} />
                     <Route path="/auth/signup" element={<Signup />} />
                     <Route path="/auth/logout" element={<Logout />} />
+                    <Route path="/auth/forgetpw" element={<Forgetpw />} />
                     <Route path="/config/user" element={
                       <ProtectedRoute>
                         <UserList />
