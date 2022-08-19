@@ -2,7 +2,7 @@ import { useState, createContext } from 'react'
 import { Routes, Route } from "react-router-dom"
 // 
 import Login from './component/auth/Login'
-import Signup from './page/auth/Signup'
+import Signup from './component/auth/Signup'
 import Logout from './page/auth/Logout'
 import VideoDetails from './page/video/VideoDetails'
 import Home from './page/home/Home'

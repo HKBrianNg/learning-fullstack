@@ -10,11 +10,12 @@ import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import GoogleIcon from '@mui/icons-material/Google';
 
 const initialUser = {
+    name: "",
     email: "",
     password: ""
 }
 
-function Login() {
+function Signup() {
     const [user, setUser] = useState(initialUser)
     const [showPassword, setShowPassword] = useState(false)
     const [errorMessage, setErrorMessage] = useState("")
@@ -62,9 +63,10 @@ function Login() {
             <Container maxWidth='xl'>
                 <Box flex={1} component="form" autoComplete="off" onSubmit={handleSubmit} sx={{ display: 'flex', justifyContent: 'center', m: 1 }} >
                     <Paper elevation={3}>
-                        <Typography variant="h5" component="h5" align='center' m={1} >Firebase Auth Login</Typography>
+                        <Typography variant="h5" component="h5" align='center' m={1} >Firebase Auth Signup</Typography>
                         <Stack direction="column" spacing={2} m={2}>
-                            <TextField required label="Email" size='small' value={user.email} onChange={(e) => setUser({ ...user, email: e.target.value })} />
+                            <TextField required label="Name" size='small' value={user.name} onChange={(e) => setUser({ ...user, name: e.target.value })} />
+                            <TextField required label="Email" type="email" size='small' value={user.email} onChange={(e) => setUser({ ...user, email: e.target.value })} />
                             {/* <TextField name="password" required label="Password" size='small' value={user.password} onChange={handleChange} /> */}
                             <FormControl sx={{ m: 1, width: '25ch' }} variant="outlined">
                                 <InputLabel htmlFor="outlined-adornment-password">Password *</InputLabel>
@@ -96,12 +98,9 @@ function Login() {
                                 <Button variant="contained" disabled={isLoading} onClick={handleCancel}>Cancel</Button>
                                 {isLoading && <Box sx={{ display: 'flex' }}><CircularProgress /></Box>}
                             </Stack>
-                            <Button variant="contained" startIcon={<GoogleIcon />}>
-                                Sign in with Google
-                            </Button>
                         </Stack>
-                        <Typography variant="subtitle1" component="subtitle1" align='center' m={1} >Don't have an account?</Typography>
-                        <Link to='/auth/signup'>Sign up</Link>
+                        <Typography variant="subtitle1" component="subtitle1" align='center' m={1} >Already have an account?</Typography>
+                        <Link to='/auth/login'>Login</Link>
                         {errorMessage && <Typography variant="h6" component="h6" align='left' color='red' m={1} >{errorMessage}</Typography>}
                     </Paper>
                 </Box>
@@ -110,4 +109,4 @@ function Login() {
     )
 }
 
-export default Login
+export default Signup
