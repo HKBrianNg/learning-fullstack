@@ -17,11 +17,11 @@ const initialUser = {
 }
 
 function Login() {
-    const [user, setUser] = useState(initialUser)
+    const [_user, setUser] = useState(initialUser)
     const [showPassword, setShowPassword] = useState(false)
     const [errorMessage, setErrorMessage] = useState("")
     const [isLoading, setIsLoading] = useState(false)
-    const { logIn, googleSignIn } = useAuth()
+    const { user, logIn, googleSignIn } = useAuth()
     const { app, setApp } = useContext(AppContext)
     const navigate = useNavigate()
 
@@ -43,8 +43,8 @@ function Login() {
         setErrorMessage("")
         setIsLoading(true)
         try {
-            await logIn(user.email, user.password)
-            setApp({ ...app, email: user.email })
+            await logIn(_user.email, _user.password)
+            setApp({ ...app, email: _user.email })
             navigate("/home", { replace: true })
         } catch (err) {
             setErrorMessage(err.message)
@@ -52,15 +52,19 @@ function Login() {
         setIsLoading(false)
     }
 
-    // const handleGoogleSignIn = async (e) => {
-    //     e.preventDefault();
-    //     try {
-    //         await googleSignIn();
-    //         navigate("/home");
-    //     } catch (error) {
-    //         console.log(error.message);
-    //     }
-    // };
+    const handleGoogleSignIn = async (e) => {
+        e.preventDefault();
+        setErrorMessage("")
+        setIsLoading(true)
+        try {
+            await googleSignIn();
+            setApp({ ...app, email: "google" })
+            navigate("/home", { replace: true });
+        } catch (err) {
+            setErrorMessage(err.message);
+        }
+        setIsLoading(false)
+    };
 
     return (
         <>
@@ -70,7 +74,7 @@ function Login() {
                     <Paper elevation={3}>
                         <Typography variant="h5" component="h5" align='center' m={1} >Firebase Auth Login</Typography>
                         <Stack direction="column" spacing={2} m={2}>
-                            <TextField required label="Email" size='small' value={user.email} onChange={(e) => setUser({ ...user, email: e.target.value })} />
+                            <TextField required label="Email" size='small' value={_user.email} onChange={(e) => setUser({ ..._user, email: e.target.value })} />
                             {/* <TextField name="password" required label="Password" size='small' value={user.password} onChange={handleChange} /> */}
                             <FormControl sx={{ m: 1, width: '25ch' }} variant="outlined">
                                 <InputLabel htmlFor="outlined-adornment-password">Password *</InputLabel>
@@ -79,8 +83,8 @@ function Login() {
                                     size='medium'
                                     required
                                     type={showPassword ? 'text' : 'password'}
-                                    value={user.password}
-                                    onChange={(e) => setUser({ ...user, password: e.target.value })}
+                                    value={_user.password}
+                                    onChange={(e) => setUser({ ..._user, password: e.target.value })}
                                     endAdornment={
                                         <InputAdornment position="end">
                                             <IconButton
@@ -102,9 +106,10 @@ function Login() {
                                 <Button variant="contained" disabled={isLoading} onClick={handleCancel}>Cancel</Button>
                                 {isLoading && <Box sx={{ display: 'flex' }}><CircularProgress /></Box>}
                             </Stack>
-                            <Button variant="contained" startIcon={<GoogleIcon />}>
+                            {/* <Button variant="contained" onClick={handleGoogleSignIn} startIcon={<GoogleIcon />}>
                                 Sign in with Google
-                            </Button>
+                            </Button> */}
+                            <GoogleButton onClick={handleGoogleSignIn} />
                         </Stack>
                         <Stack direction='row' spacing={2} m={2} >
                             <Typography variant="subtitle1" align='center' m={1} >Don't have an account?</Typography>

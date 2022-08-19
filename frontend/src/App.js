@@ -1,15 +1,15 @@
 import { useState, createContext } from 'react'
 import { Routes, Route } from "react-router-dom"
-// 
 import Login from './component/auth/Login'
 import Signup from './component/auth/Signup'
-import Logout from './page/auth/Logout'
+import Logout from './component/auth/Logout'
 import VideoDetails from './page/video/VideoDetails'
 import Home from './page/home/Home'
 import TopicList from './page/config/TopicList'
 import UserList from './page/config/UserList'
-import { ThemeProvider, createTheme } from '@mui/material/styles';
+import { ThemeProvider, createTheme } from '@mui/material/styles'
 import { AuthContextProvider } from './context/AuthContext'
+import ProtectedRoute from './component/auth/ProtectedRoute'
 
 
 export const AppContext = createContext(null)
@@ -73,8 +73,16 @@ function App() {
                     <Route path="/auth/login" element={<Login />} />
                     <Route path="/auth/signup" element={<Signup />} />
                     <Route path="/auth/logout" element={<Logout />} />
-                    <Route path="/config/user" element={<UserList />} />
-                    <Route path="/config/topic" element={<TopicList />} />
+                    <Route path="/config/user" element={
+                      <ProtectedRoute>
+                        <UserList />
+                      </ProtectedRoute>
+                    } />
+                    <Route path="/config/topic" element={
+                      <ProtectedRoute>
+                        <TopicList />
+                      </ProtectedRoute>
+                    } />
                   </Routes>
                 </AuthContextProvider>
               </UserContext.Provider>
