@@ -7,12 +7,14 @@ import { Link } from 'react-router-dom'
 import { AppContext } from '../../App'
 import { deepOrange } from '@mui/material/colors'
 import SelectCategory from './SelectCategory.js'
+import { version } from '../../constant'
+
 
 const DisplayLogo = () => {
     return (
         <Link to='/home' style={{ textDecoration: 'none', display: 'flex', color: 'white', marginRight: 1, }}>
             <LocalLibraryIcon fontSize="large" sx={{ mr: '8px', }} />
-            <Typography variant='h6' sx={{ marginRight: 1 }}>Learning</Typography>
+            <Typography variant='h6' sx={{ marginRight: 1 }}>Learning {version}</Typography>
         </Link>
     );
 }

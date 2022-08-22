@@ -115,6 +115,8 @@ function SetupVideo({ selectedId, setSelectedId }) {
                                     <MenuItem value='React'>React</MenuItem>
                                     <MenuItem value='MERN'>MERN</MenuItem>
                                     <MenuItem value='Microservices'>Microservices</MenuItem>
+                                    <MenuItem value='Firebase'>Firebase</MenuItem>
+                                    <MenuItem value='eCommerce'>eCommerce</MenuItem>
                                 </Select>
                             </FormControl>
                             <TextField name="id" required fullWidth label="ID" size='small' value={video.id} onChange={handleChange} />
