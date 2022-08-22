@@ -1,6 +1,6 @@
 import axios from 'axios'
+import { url } from '../constant.js'
 
-const url = 'http://localhost:4000'
 
 export const createTopicAPI = async (topic) => {
     try {
