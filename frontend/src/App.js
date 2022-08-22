@@ -33,30 +33,7 @@ function App() {
     palette: {
       mode: app.theme,
     },
-    overrides: {
-      MuiFilledInput: {
-        root: {
-          backgroundColor: 'rgba(255,255,255,0.8)',
-          '&:hover': {
-            backgroundColor: 'rgba(255,255,255,1)'
-          },
-          '&.Mui-focused': {
-            backgroundColor: 'rgba(255,255,255,1)'
-          }
-        }
-      }
-    },
-    components: {
-      MuiInputBase: {
-        styleOverrides: {
-          root: {
-            "&:before": {
-              borderBottom: "1px solid yellow !imporatnt",
-            }
-          },
-        },
-      },
-    },
+
   });
 
   return (

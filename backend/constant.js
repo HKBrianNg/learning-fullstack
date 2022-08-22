@@ -1,7 +1,7 @@
 export const welcomeMsg = {
     "lastUpdateAt": "2022-8-14",
     "message": "Welcome to Learning API",
-    "version": "1.0.5"
+    "version": "1.0.0 2022/8/22"
 }
 
 export const sysMsg = [
