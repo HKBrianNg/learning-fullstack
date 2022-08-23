@@ -1,8 +1,9 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useContext } from 'react'
 import { Typography, Box, TextField, Stack, Paper, Button, FormControl, InputLabel, Select, MenuItem } from '@mui/material'
 import CircularProgress from '@mui/material/CircularProgress'
 import { createVideoAPI, getVideoAPI, updateVideoAPI } from '../../api/video'
 import { SysMsg } from '../../constant'
+import { VideoContext } from '../../App'
 
 
 const initialVideo = {
@@ -23,6 +24,7 @@ function SetupVideo({ selectedId, setSelectedId }) {
     const [video, setVideo] = useState(initialVideo)
     const [errorMessage, setErrorMessage] = useState('')
     const [isLoading, setIsLoading] = useState(false)
+    const { videoData, setVideoData } = useContext(VideoContext)
 
     useEffect(() => {
         if (selectedId !== '0') {
@@ -48,6 +50,8 @@ function SetupVideo({ selectedId, setSelectedId }) {
         const { okStatus, data } = await createVideoAPI(video)
         if (okStatus) {
             handleCancel()
+            setVideoData(current => [...current, data])
+            setVideo(initialVideo)
         }
         else {
             setErrorMessage(data)
@@ -58,6 +62,9 @@ function SetupVideo({ selectedId, setSelectedId }) {
         const { okStatus, data } = await updateVideoAPI(video, selectedId)
         if (okStatus) {
             handleCancel()
+            const newVideoData = videoData.map(el => el._id === data._id ? data : el)
+            setVideo(newVideoData)
+            setSelectedId('0')
         }
         else {
             setErrorMessage(data)
